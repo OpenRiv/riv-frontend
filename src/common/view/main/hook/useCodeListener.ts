@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { postOauth2Token } from "../../../api/discord/post/post_oauth2_token";
+import { postOauth2Token } from "../../../api/discord/get/post_oauth2_token";
 
 // redirectUrl으로부터 code 값을 리스닝하는 훅입니다.
 export function useCodeListener() {

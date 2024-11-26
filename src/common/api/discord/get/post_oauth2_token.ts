@@ -1,6 +1,6 @@
 import { discordClient } from "../discord_client";
 
-export async function postOauth2Token(code: string): Promise<string> {
+export async function postOauth2Token(code: string) {
   try {
     const response = await discordClient.post(
       "/oauth2/token",
