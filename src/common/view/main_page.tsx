@@ -1,8 +1,40 @@
+import { useEffect } from "react";
 import ServiceButton from "../../onboarding/component/service_button";
 import Riv from "../component/riv/riv";
 import { handleOnboarding } from "./utils/handle_onboarding";
+import { useNavigate } from "react-router-dom";
 
 export default function MainPage() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleAuthCode = (event: MessageEvent) => {
+      // 다른 origin의 메시지를 무시
+      if (event.origin !== window.location.origin) {
+        console.error("Origin mismatch. Ignoring message.");
+        return;
+      }
+
+      const { authCode } = event.data;
+
+      if (authCode) {
+        console.log("Received authCode:", authCode);
+
+        // 추가 작업 가능 (예: 서버에 인증 요청)
+        // 메인 페이지로 이동
+        navigate("/", { replace: true });
+      }
+    };
+
+    // 메시지 리스너 등록
+    window.addEventListener("message", handleAuthCode);
+
+    return () => {
+      // 컴포넌트 언마운트 시 리스너 제거
+      window.removeEventListener("message", handleAuthCode);
+    };
+  }, [navigate]);
+
   return (
     <section className="w-screen h-screen flex flex-row items-center justify-center bg-[#EEF9FC] max-md:flex-col">
       {/* 리브 이미지*/}
@@ -44,7 +76,7 @@ function IntroSection() {
 }
 
 function ButtonSection() {
-  // 디스코드 온보딩 url
+  // 디스코드 온보딩 URL
   const onboardUrl = `${
     import.meta.env.VITE_API_URL
   }oauth2/authorization/discord`;

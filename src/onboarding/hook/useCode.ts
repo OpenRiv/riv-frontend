@@ -1,26 +1,26 @@
-import { useEffect, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function useCode() {
-  const [searchParams] = useSearchParams();
-  const [code, setCode] = useState("");
-  const navigate = useNavigate();
-
   useEffect(() => {
-    // URL에서 "code" 파라미터 값을 읽기
-    const codeParam = searchParams.get("code");
+    const params = new URLSearchParams(window.location.search);
+    const codeParam = params.get("code");
+
     if (codeParam) {
-      setCode(codeParam);
+      // 부모 창으로 메시지 전달
+      if (window.opener) {
+        console.log("open");
+        window.opener.postMessage(
+          { authCode: codeParam }, // 전달 데이터
+          window.location.origin // 같은 origin만 허용
+        );
 
-      // 로컬 스토리지에 저장
-      localStorage.setItem("authCode", codeParam);
-
-      // 메인 페이지로 리다이렉트
-      navigate("/", { replace: true });
+        // 새 창 닫기
+        window.close();
+      } else {
+        console.error("No parent window found. Unable to send auth code.");
+      }
     }
-  }, [searchParams, navigate]);
+  }, []);
 
-  return {
-    code,
-  };
+  return null; // UI는 필요 없음
 }
