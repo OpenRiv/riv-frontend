@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { postOauth2Token } from "../../../api/discord/post_oauth2_token";
 
 // redirectUrl으로부터 code 값을 리스닝하는 훅입니다.
 export function useCodeListener() {
@@ -7,7 +8,6 @@ export function useCodeListener() {
 
   useEffect(() => {
     const handleAuthCode = (event: MessageEvent) => {
-      // 허용된 origin 목록
       const allowedOrigins = [
         "http://localhost:5173", // 로컬 개발 환경
         "https://riv-frontend.vercel.app", // 배포된 환경
@@ -22,19 +22,27 @@ export function useCodeListener() {
       const { authCode } = event.data;
 
       if (authCode) {
-        // 로컬 스토리지에 저장
-        localStorage.setItem("code", authCode);
-
-        // 인증 완료 후 서버 페이지로 이동
-        navigate("/server", { replace: true });
+        console.log("Received authCode:", authCode);
+        fetchAccessToken(authCode);
       }
     };
 
-    // 메시지 이벤트 리스너 등록
+    // AccessToken을 가져오는 비동기 함수
+    const fetchAccessToken = async (authCode: string) => {
+      try {
+        // Code를 사용해 accessToken 요청
+        const accessToken = await postOauth2Token(authCode);
+
+        // accessToken 저장
+        localStorage.setItem("accessToken", accessToken);
+      } catch (e) {
+        console.error(e);
+      }
+    };
+
     window.addEventListener("message", handleAuthCode);
 
     return () => {
-      // 리스너 제거
       window.removeEventListener("message", handleAuthCode);
     };
   }, [navigate]);

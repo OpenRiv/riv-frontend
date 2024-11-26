@@ -1,7 +1,7 @@
 export function handleOnboarding({ url }: handleOnboardingProps) {
   const width = 650;
   const height = 600;
-  const left = (window.innerWidth - width) / 2;
+  const left = (window.outerWidth - width) / 2;
   const top = (window.outerHeight - height) / 2;
 
   window.open(
