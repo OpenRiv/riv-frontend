@@ -15,7 +15,7 @@ export default function useCode() {
         );
 
         // 새 창 닫기
-        window.close();
+        // window.close();
       } else {
         console.error("No parent window found. Unable to send auth code.");
       }

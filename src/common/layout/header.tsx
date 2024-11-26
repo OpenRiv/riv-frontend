@@ -9,7 +9,7 @@ export default function Header() {
       <section className="max-w-full h-full mx-[1rem] flex flex-row items-center justify-between">
         <div
           className="flex flex-row items-center gap-[1rem] cursor-pointer"
-          onClick={() => navigate(`/`)}
+          onClick={() => navigate(`/server`)}
         >
           <RivFace className="size-[2rem]" />
           <p className="text-gray-09 font-black text-[1.25rem]">RIV</p>
