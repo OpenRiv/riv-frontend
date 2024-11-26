@@ -7,12 +7,13 @@ export default function useCode() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // "code" 쿼리 값을 읽어서 저장
-    const accessToken = searchParams.get("accessToken");
-    if (accessToken) {
-      setCode(accessToken);
-      // 로컬 스토리지 저장
-      localStorage.setItem("accessToken", accessToken);
+    // URL에서 "code" 파라미터 값을 읽기
+    const codeParam = searchParams.get("code");
+    if (codeParam) {
+      setCode(codeParam);
+
+      // 로컬 스토리지에 저장
+      localStorage.setItem("authCode", codeParam);
 
       // 메인 페이지로 리다이렉트
       navigate("/", { replace: true });
