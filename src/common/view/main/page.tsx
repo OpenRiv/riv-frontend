@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import ServiceButton from "../../onboarding/component/service_button";
-import Riv from "../component/riv/riv";
+import ServiceButton from "../../../onboarding/component/service_button";
+import Riv from "../../component/riv/riv";
 import { handleOnboarding } from "./utils/handle_onboarding";
 import { useNavigate } from "react-router-dom";
 

@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import MainPage from "../common/view/main_page";
+import MainPage from "../common/view/main/page";
 import TestPage from "../server/view/test";
 import { Layout } from "./outlet";
 import ServerPage from "../server/view/server/page";
