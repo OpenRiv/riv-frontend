@@ -8,10 +8,10 @@ export default function useCode() {
     if (codeParam) {
       // 부모 창으로 메시지 전달
       if (window.opener) {
-        console.log("open");
+        console.log("Sending authCode to parent window");
         window.opener.postMessage(
-          { authCode: codeParam }, // 전달 데이터
-          window.location.origin // 같은 origin만 허용
+          { authCode: codeParam }, // 전달할 데이터
+          "*" // 모든 origin 허용 (부모 창에서 검증)
         );
 
         // 새 창 닫기
@@ -21,6 +21,4 @@ export default function useCode() {
       }
     }
   }, []);
-
-  return null; // UI는 필요 없음
 }
