@@ -1,4 +1,4 @@
-import { discordClient } from "./discord_client";
+import { discordClient } from "../discord_client";
 
 export async function postOauth2Token(code: string): Promise<string> {
   try {

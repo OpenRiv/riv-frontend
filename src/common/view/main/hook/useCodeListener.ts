@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { postOauth2Token } from "../../../api/discord/post_oauth2_token";
+import { postOauth2Token } from "../../../api/discord/post/post_oauth2_token";
 
 // redirectUrl으로부터 code 값을 리스닝하는 훅입니다.
 export function useCodeListener() {
@@ -15,14 +15,13 @@ export function useCodeListener() {
 
       // 메시지의 origin이 허용된 목록에 있는지 확인
       if (!allowedOrigins.includes(event.origin)) {
-        console.error(`Invalid origin: ${event.origin}`);
+        console.error(`${event.origin}`);
         return;
       }
 
       const { authCode } = event.data;
 
       if (authCode) {
-        console.log("Received authCode:", authCode);
         fetchAccessToken(authCode);
       }
     };
@@ -32,9 +31,9 @@ export function useCodeListener() {
       try {
         // Code를 사용해 accessToken 요청
         const accessToken = await postOauth2Token(authCode);
-
         // accessToken 저장
         localStorage.setItem("accessToken", accessToken);
+        navigate("/server");
       } catch (e) {
         console.error(e);
       }
