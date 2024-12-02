@@ -3,11 +3,12 @@ import ServerCard from "../../../component/card/server_card";
 import { useResServerCard } from "../../../hook/use_res_server_card";
 import "react-loading-skeleton/dist/skeleton.css";
 import ServerSectionLoading from "../skeleton/server_section";
-import { filterAndGroupGuilds } from "../utils/guild_filter";
-
+import { useGetBotInGuild } from "../../../../common/hook/query/use_get_guilds_member";
+import { processAndGroupGuilds } from "../utils/guild_filter";
 export default function ServerSection() {
   const { count } = useResServerCard();
   const { data: guildList, isLoading, isError } = useUserGuilds();
+  const { data: guildWithBotList } = useGetBotInGuild();
 
   // 로딩 상태
   if (isLoading) {
@@ -19,8 +20,12 @@ export default function ServerSection() {
     return <></>;
   }
 
-  // 초대 권한이 있는 길드만 필터링 및 그룹화
-  const groupedGuilds = filterAndGroupGuilds(guildList, count);
+  // 필터링 및 그룹화
+  const groupedGuilds = processAndGroupGuilds(
+    guildList,
+    guildWithBotList,
+    count
+  );
 
   return (
     <section className="flex flex-col items-center justify-center space-y-[4rem] mb-[4rem] mt-[2rem] w-full">
@@ -40,6 +45,7 @@ export default function ServerSection() {
               }
               serverName={guild.name}
               isOwner={guild.owner}
+              isRiv={guild.isRiv}
             />
           ))}
         </div>

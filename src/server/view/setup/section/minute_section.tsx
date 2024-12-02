@@ -6,7 +6,7 @@ import {
 import Filter from "../../../component/button/filter";
 import SearchBar from "../../../component/input/search_bar";
 import MinuteCard from "../../../component/card/minute_card";
-import { Minutes } from "../conste/mock_data";
+import { Minutes } from "../const/mock_data";
 import { ListView } from "../../../component/list/listview";
 import { categories, sortItems } from "../../../component/list/list_type";
 import { useState } from "react";

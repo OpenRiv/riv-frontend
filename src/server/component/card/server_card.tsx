@@ -6,16 +6,15 @@ import {
   AvatarImage,
 } from "../../../common/component/radix/avator";
 import Entry from "../button/entry";
-import { useRivInGuild } from "../../view/server/hook/use_riv_in_guild";
 
 export default function ServerCard({
   guildId,
   svIcon,
   isOwner = true,
   serverName = "Riv's Server",
+  isRiv = false,
 }: ServerCardProps) {
   const navigate = useNavigate();
-  const { isRiv } = useRivInGuild(guildId);
   return (
     <div className="w-[22.1875rem]">
       <div className="relative mb-[0.75rem]">
@@ -44,7 +43,8 @@ export default function ServerCard({
         <Entry
           isRiv={isRiv}
           onClick={() => {
-            navigate(`/setup`);
+            const id: string = guildId;
+            navigate(`/setup/${id}`);
           }}
         />
       </div>
@@ -57,4 +57,5 @@ interface ServerCardProps {
   svIcon?: string | null;
   isOwner?: boolean;
   serverName?: string;
+  isRiv?: boolean;
 }

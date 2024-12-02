@@ -1,12 +1,29 @@
 import { DiscordGuild } from "../../../../common/api/discord/get/get_user_guilds";
 
-export const filterAndGroupGuilds = (
+export const processAndGroupGuilds = (
   guildList: DiscordGuild[],
+  guildWithBotList: DiscordGuild[] | undefined,
   count: number
 ) => {
   const INVITE_PERMISSION_BIT = 0x1; // CREATE_INSTANT_INVITE 권한
 
-  return guildList.reduce((groups, guild) => {
+  // `botGuildIds` 생성
+  const botGuildIds = guildWithBotList?.map((guild) => guild.id) || [];
+
+  // `isRiv` 추가 및 정렬
+  const updatedGuildList = guildList
+    .map((guild) => ({
+      ...guild,
+      isRiv: botGuildIds.includes(guild.id), // isRiv 추가
+    }))
+    .sort((a, b) => {
+      if (a.isRiv && !b.isRiv) return -1;
+      if (!a.isRiv && b.isRiv) return 1;
+      return 0;
+    });
+
+  // 초대 권한이 있는 길드만 필터링 및 그룹화
+  return updatedGuildList.reduce((groups, guild) => {
     const numericPermissions = parseInt(guild.permissions, 10);
     if (
       (numericPermissions & INVITE_PERMISSION_BIT) ===
@@ -20,5 +37,5 @@ export const filterAndGroupGuilds = (
       }
     }
     return groups;
-  }, [] as DiscordGuild[][]);
+  }, [] as (DiscordGuild & { isRiv: boolean })[][]);
 };
