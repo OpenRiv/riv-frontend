@@ -80,11 +80,10 @@ export default function ServerCard({
             // 리브가 없는 서버 - 리브봇 추가 로직
             if (!isRiv) {
               const id: string = guildId;
+              const baseUrl: string = `${window.location.protocol}//${window.location.host}/`;
               const botAddUrl: string = `${
                 import.meta.env.VITE_BOT_ADD
-              }&guild_id=${guildId}&redirect_uri=${
-                import.meta.env.BASE_URL
-              }/riv-redirect/${id}`;
+              }&guild_id=${guildId}&redirect_uri=${baseUrl}riv-redirect?id=${id}`;
               handleTap({ url: botAddUrl });
             }
           }}

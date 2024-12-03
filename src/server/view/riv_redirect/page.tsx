@@ -1,9 +1,10 @@
-import { useParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { usePostServers } from "../../../common/hook/mutation/use_post_servers";
 import { useEffect } from "react";
 
 export default function RivRedirect() {
-  const { id } = useParams(); // 구조 분해 할당으로 id 추출
+  const [searchParams] = useSearchParams(); // 쿼리 파라미터 읽기
+  const id = searchParams.get("id"); // "id" 파라미터 추출
   const { mutate } = usePostServers();
 
   useEffect(() => {

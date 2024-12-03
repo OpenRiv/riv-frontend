@@ -15,7 +15,7 @@ export default function MainRouter() {
         <Route path="/login/oauth2/code/discord" element={<RedirectPage />} />
         <Route path="/server" element={<ServerPage />} />
         <Route path="/setup/:id" element={<SetupPage />} />
-        <Route path="/riv-redirect/:id" element={<RivRedirect />} />
+        <Route path="/riv-redirect" element={<RivRedirect />} />
       </Route>
     </Routes>
   );
