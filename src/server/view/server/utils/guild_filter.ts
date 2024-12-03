@@ -5,7 +5,8 @@ export const processAndGroupGuilds = (
   guildWithBotList: DiscordGuild[] | undefined,
   count: number
 ) => {
-  const INVITE_PERMISSION_BIT = 0x1; // CREATE_INSTANT_INVITE 권한
+  const ADMINISTRATOR_BIT = 0x8; // ADMINISTRATOR 권한
+  const MANAGE_GUILD_BIT = 0x20; // MANAGE_GUILD 권한
 
   // `botGuildIds` 생성
   const botGuildIds = guildWithBotList?.map((guild) => guild.id) || [];
@@ -25,10 +26,13 @@ export const processAndGroupGuilds = (
   // 초대 권한이 있는 길드만 필터링 및 그룹화
   return updatedGuildList.reduce((groups, guild) => {
     const numericPermissions = parseInt(guild.permissions, 10);
-    if (
-      (numericPermissions & INVITE_PERMISSION_BIT) ===
-      INVITE_PERMISSION_BIT
-    ) {
+
+    // 초대 권한 확인 (ADMINISTRATOR 또는 MANAGE_GUILD 권한 포함)
+    const invitePermissionGuild =
+      (numericPermissions & ADMINISTRATOR_BIT) === ADMINISTRATOR_BIT ||
+      (numericPermissions & MANAGE_GUILD_BIT) === MANAGE_GUILD_BIT;
+
+    if (invitePermissionGuild) {
       const lastGroup = groups[groups.length - 1];
       if (!lastGroup || lastGroup.length === count) {
         groups.push([guild]); // 새로운 그룹 생성

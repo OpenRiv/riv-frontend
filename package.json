@@ -27,6 +27,7 @@
     "react-dom": "^18.3.1",
     "react-loading-skeleton": "^3.5.0",
     "react-router-dom": "^6.27.0",
+    "react-toastify": "^10.0.6",
     "recoil": "^0.7.7",
     "shadcn-react": "^0.0.22",
     "tailwind-merge": "^2.5.4",

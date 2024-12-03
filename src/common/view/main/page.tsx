@@ -1,6 +1,6 @@
 import ServiceButton from "../../../onboarding/component/service_button";
 import Riv from "../../component/riv/riv";
-import { handleOnboarding } from "./utils/handle_onboarding";
+import { handleTap } from "./utils/handle_tap";
 import { useCodeListener } from "./hook/useCodeListener";
 
 export default function MainPage() {
@@ -58,7 +58,7 @@ function ButtonSection() {
         icon="/assets/icon/discord.svg"
         className="bg-gradient-to-br from-discord-left to-discord-right px-[1.4rem]"
         iconSize="0.8rem"
-        onClick={() => handleOnboarding({ url: onboardUrl })}
+        onClick={() => handleTap({ url: onboardUrl })}
       />
       <ServiceButton
         text="View on Github"

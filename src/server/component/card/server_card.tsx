@@ -6,6 +6,9 @@ import {
   AvatarImage,
 } from "../../../common/component/radix/avator";
 import Entry from "../button/entry";
+import { useGetServersServer } from "../../../common/hook/query/use_get_servers_server";
+import Skeleton from "react-loading-skeleton";
+import { handleTap } from "../../../common/view/main/utils/handle_tap";
 
 export default function ServerCard({
   guildId,
@@ -15,12 +18,38 @@ export default function ServerCard({
   isRiv = false,
 }: ServerCardProps) {
   const navigate = useNavigate();
+  const { data, isLoading, error } = useGetServersServer({
+    serverUnique: guildId,
+    isRiv: isRiv,
+  });
+
+  if (isLoading) {
+    return (
+      <div className="flex flex-col items-start space-y-[1rem]">
+        <Skeleton height={"12rem"} width={"22rem"} />
+        <div className="flex flex-row justify-between w-full">
+          <div>
+            <Skeleton width={"7rem"} height={"1.5rem"} />
+            <Skeleton width={"5rem"} height={"1.2rem"} />
+          </div>
+          <Skeleton width={"6rem"} height={"4rem"} />
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="text-white">Error: 서버 정보를 불러올 수 없습니다.</div>
+    );
+  }
+
   return (
     <div className="w-[22.1875rem]">
       <div className="relative mb-[0.75rem]">
         <AspectRatio ratio={7 / 4} className="overflow-hidden rounded-[0.4rem]">
           {svIcon ? (
-            <img src={svIcon} className=" w-full h-full object-cover blur-lg" />
+            <img src={svIcon} className="w-full h-full object-cover blur-lg" />
           ) : (
             <div className="bg-gray-03 rounded-[0.4rem] w-full h-full" />
           )}
@@ -43,8 +72,21 @@ export default function ServerCard({
         <Entry
           isRiv={isRiv}
           onClick={() => {
-            const id: string = guildId;
-            navigate(`/setup/${id}`);
+            // 리브가 있는 서버 - 회의록 관리 페이지 이동
+            if (data && isRiv) {
+              const id: number = data;
+              navigate(`/setup/${id}`);
+            }
+            // 리브가 없는 서버 - 리브봇 추가 로직
+            if (!isRiv) {
+              const id: string = guildId;
+              const botAddUrl: string = `${
+                import.meta.env.VITE_BOT_ADD
+              }&guild_id=${guildId}&redirect_uri=${
+                import.meta.env.BASE_URL
+              }/riv-redirect/${id}`;
+              handleTap({ url: botAddUrl });
+            }
           }}
         />
       </div>

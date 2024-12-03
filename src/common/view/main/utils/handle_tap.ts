@@ -1,4 +1,4 @@
-export function handleOnboarding({ url }: handleOnboardingProps) {
+export function handleTap({ url }: handleOnboardingProps) {
   const width = 650;
   const height = 600;
   const left = (window.outerWidth - width) / 2;
