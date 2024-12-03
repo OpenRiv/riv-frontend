@@ -6,7 +6,7 @@ import {
   AvatarImage,
 } from "../../../common/component/radix/avator";
 import Entry from "../button/entry";
-import { useGetServersServer } from "../../../common/hook/query/use_get_servers_server";
+import { useGetServersServer } from "../../hook/query/use_get_servers_server";
 import Skeleton from "react-loading-skeleton";
 import { handleTap } from "../../../common/view/main/utils/handle_tap";
 
@@ -80,10 +80,9 @@ export default function ServerCard({
             // 리브가 없는 서버 - 리브봇 추가 로직
             if (!isRiv) {
               const id: string = guildId;
-              const baseUrl: string = `${window.location.protocol}//${window.location.host}/`;
               const botAddUrl: string = `${
                 import.meta.env.VITE_BOT_ADD
-              }&guild_id=${guildId}&redirect_uri=${baseUrl}riv-redirect?id=${id}`;
+              }&guild_id=${guildId}&redirect_uri=https://riv-frontend.vercel.app/riv-redirect?id=${id}`;
               handleTap({ url: botAddUrl });
             }
           }}

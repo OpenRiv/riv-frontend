@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import { client } from "../../api/backend/client";
+import { client } from "../../../common/api/backend/client";
 
+// 특정 채널의 요약본 텍스트 파일 목록을 페이징 처리하여 조회하는 API 훅
 export const useGetServerChannelsId = ({
   channelId,
   page = 0,
@@ -29,7 +30,7 @@ export const useGetServerChannelsId = ({
 };
 
 interface Props {
-  channelId: string;
+  channelId: number;
   page?: number;
   size?: number;
 }
@@ -39,15 +40,16 @@ interface RespType {
   code: string;
   message: string;
   data: {
-    textInfoList: Array<{
-      recodingId: number;
-      title: string;
-      subtext: string;
-      createdAt: string;
-    }>;
+    textInfoList: textInfoList[];
     pages: number;
     totalElements: number;
     first: boolean;
     last: boolean;
   };
+}
+export interface textInfoList {
+  recodingId: number;
+  title: string;
+  subtext: string;
+  createdAt: string;
 }

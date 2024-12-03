@@ -1,12 +1,33 @@
 import { DotsThree } from "@phosphor-icons/react";
+import { useDeleteRecoding } from "../../hook/mutation/use_delete_recoding";
+import { toast } from "react-toastify";
 
 export default function MinuteCard({
   title,
   preview,
   date,
+  recordingId,
   onSheet,
 }: MinuteCardProps) {
   const textStyle = "font-regular text-[0.8rem]";
+
+  const { mutate: deleteRecoding } = useDeleteRecoding();
+
+  const handleDelete = (recodingId: number) => {
+    deleteRecoding(
+      { recodingId },
+      {
+        onSuccess: () => {
+          toast.success("회의록이 삭제되었습니다.");
+          window.location.reload();
+        },
+        onError: (error) => {
+          console.error("삭제 실패:", error);
+          toast.error("삭제에 실패했습니다.");
+        },
+      }
+    );
+  };
 
   return (
     <div className="relative w-full">
@@ -28,7 +49,10 @@ export default function MinuteCard({
             >
               수정하기
             </button>
-            <button className="hover:brightness-75 text-red-01 w-full h-full pb-[0.8rem] pr-[0.8rem]">
+            <button
+              onClick={() => handleDelete(recordingId)}
+              className="hover:brightness-75 text-red-01 w-full h-full pb-[0.8rem] pr-[0.8rem]"
+            >
               삭제하기
             </button>
           </div>
@@ -43,4 +67,5 @@ interface MinuteCardProps {
   preview: string;
   date: string;
   onSheet: VoidFunction;
+  recordingId: number;
 }

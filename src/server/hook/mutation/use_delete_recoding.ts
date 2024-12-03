@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { client } from "../../api/backend/client";
+import { client } from "../../../common/api/backend/client";
 
 // 레코딩 삭제를 위한 API 요청 훅
 export const useDeleteRecoding = () => {

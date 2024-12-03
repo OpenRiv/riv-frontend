@@ -1,5 +1,5 @@
 import { useSearchParams } from "react-router-dom";
-import { usePostServers } from "../../../common/hook/mutation/use_post_servers";
+import { usePostServers } from "../../hook/mutation/use_post_servers";
 import { useEffect } from "react";
 
 export default function RivRedirect() {

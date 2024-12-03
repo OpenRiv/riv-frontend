@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { client } from "../../api/backend/client";
+import { client } from "../../../common/api/backend/client";
 
 // 서버의 unique id로 서버 id를 조회하는 API 요청 훅
 export const useGetServersServer = ({ serverUnique, isRiv = false }: Props) => {

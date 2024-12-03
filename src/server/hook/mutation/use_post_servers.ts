@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { client } from "../../api/backend/client";
+import { client } from "../../../common/api/backend/client";
 
 // 서버 추가를 위한 커스텀 훅
 export const usePostServers = () => {
