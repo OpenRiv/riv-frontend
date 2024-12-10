@@ -22,7 +22,7 @@ export default function useCode() {
       // 봇 추가 로직 - 쿼리 파람에 code가 없을 때
       if (window.opener) {
         window.opener.postMessage(
-          { status: "success", message: "리브가 성공적으로 추가됐습니다." }, // 봇 추가 성공 메시지 전달
+          { status: "success", message: "리브가 성공적으로 추가됐습니다." },
           "*"
         );
         window.close();

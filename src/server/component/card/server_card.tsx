@@ -80,9 +80,7 @@ export default function ServerCard({
             // 리브가 없는 서버 - 리브봇 추가 로직
             if (!isRiv) {
               // 리다이렉트 url
-              const redirectUrl: string = `${
-                import.meta.env.VITE_API_URL
-              }/login/oauth2/code/discord`;
+              const redirectUrl: string = import.meta.env.VITE_REDIRECT_URI;
               // 리브 봇 추가 url
               const botAddUrl: string = `${
                 import.meta.env.VITE_BOT_ADD

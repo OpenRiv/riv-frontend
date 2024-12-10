@@ -2,9 +2,9 @@ import { useMutation } from "@tanstack/react-query";
 import { client } from "../../../common/api/backend/client";
 
 // 서버 추가를 위한 커스텀 훅
-export const usePostServers = ({ serverUnique }: Props) => {
+export const usePostServers = () => {
   // API 요청 함수
-  const postServers = async ({ serverUnique }: Props): Promise<RespType> => {
+  const postServers = async (serverUnique: string): Promise<RespType> => {
     const response = await client<RespType>({
       url: "/servers",
       method: "post",
@@ -19,9 +19,6 @@ export const usePostServers = ({ serverUnique }: Props) => {
   });
 };
 
-interface Props {
-  serverUnique: string;
-}
 // 응답 타입 정의
 interface RespType {
   status: number;
