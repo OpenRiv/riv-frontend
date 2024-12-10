@@ -79,13 +79,18 @@ export default function ServerCard({
             }
             // 리브가 없는 서버 - 리브봇 추가 로직
             if (!isRiv) {
+              // 리다이렉트 url
               const redirectUrl: string = `${
                 import.meta.env.VITE_API_URL
               }/login/oauth2/code/discord`;
+              // 리브 봇 추가 url
               const botAddUrl: string = `${
                 import.meta.env.VITE_BOT_ADD
               }&guild_id=${guildId}&redirect_uri=${redirectUrl}`;
+              // 창 띄우기
               handleTap({ url: botAddUrl });
+              // 길드 id 저장하기
+              localStorage.setItem("guildId", guildId);
             }
           }}
         />
