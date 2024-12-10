@@ -18,7 +18,7 @@ export default function ServerCard({
   isRiv = false,
 }: ServerCardProps) {
   const navigate = useNavigate();
-  const { data, isLoading, error } = useGetServersServer({
+  const { data, isLoading, isError } = useGetServersServer({
     serverUnique: guildId,
     isRiv: isRiv,
   });
@@ -38,7 +38,7 @@ export default function ServerCard({
     );
   }
 
-  if (error) {
+  if (isError) {
     return (
       <div className="text-white">Error: 서버 정보를 불러올 수 없습니다.</div>
     );
@@ -79,9 +79,12 @@ export default function ServerCard({
             }
             // 리브가 없는 서버 - 리브봇 추가 로직
             if (!isRiv) {
+              const redirectUrl: string = `${
+                import.meta.env.VITE_API_URL
+              }/login/oauth2/code/discord`;
               const botAddUrl: string = `${
                 import.meta.env.VITE_BOT_ADD
-              }&guild_id=${guildId}`;
+              }&guild_id=${guildId}&redirect_uri=${redirectUrl}`;
               handleTap({ url: botAddUrl });
             }
           }}

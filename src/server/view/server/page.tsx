@@ -7,7 +7,6 @@ import "react-toastify/dist/ReactToastify.css";
 export default function ServerPage() {
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
-      if (event.origin !== window.location.origin) return;
       const { status, message } = event.data;
 
       if (status === "success") {

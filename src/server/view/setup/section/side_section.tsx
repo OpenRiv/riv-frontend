@@ -4,7 +4,7 @@ import ServerProfile from "../../../component/card/server_profile";
 
 export default function SideSection() {
   return (
-    <section className="min-w-[20rem] min-h-full bg-gray-03 flex flex-col items-center">
+    <section className="min-w-[20rem] min-h-screen max-h-full bg-gray-03 flex flex-col items-center">
       <ServerProfile
         className="my-[2rem]"
         svName="INFOSSU"
