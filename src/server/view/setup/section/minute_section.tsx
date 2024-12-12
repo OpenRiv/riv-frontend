@@ -14,6 +14,7 @@ export default function MinuteSection({ serverId }: Props) {
   const {
     minutes,
     recodingId,
+    channelId,
     updateRecodingId,
     lastMinuteRef,
     isFetchingNextPage,
@@ -40,6 +41,7 @@ export default function MinuteSection({ serverId }: Props) {
             return (
               <div ref={lastMinuteRef} key={index}>
                 <MinuteCard
+                  channelId={channelId}
                   recordingId={minute.recodingId}
                   title={minute.title}
                   preview={minute.subtext}
@@ -55,6 +57,7 @@ export default function MinuteSection({ serverId }: Props) {
             return (
               <MinuteCard
                 key={index}
+                channelId={channelId}
                 recordingId={minute.recodingId}
                 title={minute.title}
                 preview={minute.subtext}

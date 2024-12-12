@@ -1,16 +1,19 @@
 import { DotsThree } from "@phosphor-icons/react";
 import { useDeleteRecoding } from "../../hook/mutation/use_delete_recoding";
 import { toast } from "react-toastify";
+import { useQueryClient } from "@tanstack/react-query";
 
 export default function MinuteCard({
   title,
   preview,
   date,
   recordingId,
+  channelId,
   onSheet,
 }: MinuteCardProps) {
   const textStyle = "font-regular text-[0.8rem]";
 
+  const queryClient = useQueryClient();
   const { mutate: deleteRecoding } = useDeleteRecoding();
 
   const handleDelete = (recodingId: number) => {
@@ -19,7 +22,9 @@ export default function MinuteCard({
       {
         onSuccess: () => {
           toast.success("회의록이 삭제되었습니다.");
-          window.location.reload();
+          queryClient.invalidateQueries({
+            queryKey: ["servers-channels-channelId", channelId],
+          });
         },
         onError: (error) => {
           console.error("삭제 실패:", error);
@@ -29,10 +34,11 @@ export default function MinuteCard({
     );
   };
 
+  // preview 마크업 문자에서 문자만 추출
   const cutPreview: string = preview
-    .replace(/[^a-zA-Z가-힣0-9\s.]/g, "") // 특수문자 제거 (#, \n 등), '.'은 포함
-    .replace(/\s+/g, " ") // 여러 개의 공백을 하나로 변환
-    .trim(); // 앞뒤 공백 제거
+    .replace(/[^a-zA-Z가-힣0-9\s.]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
 
   return (
     <div className="relative w-full">
@@ -73,4 +79,5 @@ interface MinuteCardProps {
   date: string;
   onSheet: VoidFunction;
   recordingId: number;
+  channelId: number;
 }

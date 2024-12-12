@@ -1,0 +1,13 @@
+.Toastify__toast {
+  background-color: #111214;
+  color: white;
+}
+.Toastify__toast--info {
+  border: 1px solid transparent;
+}
+.Toastify__toast--success {
+  border: 1px solid #576def;
+}
+.Toastify__toast--error {
+  border: 1px solid #f24040;
+}

@@ -45,6 +45,7 @@ export default function useMinutes({ serverId }: Props) {
     lastMinuteRef,
     isFetching,
     isFetchingNextPage,
+    channelId,
   };
 }
 
