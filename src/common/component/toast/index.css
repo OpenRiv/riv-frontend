@@ -1,13 +1,23 @@
+:root {
+  --toastify-icon-color-success: #576def; /* 초록색 */
+  --toastify-icon-color-info: #576def; /* 파란색 */
+}
+
 .Toastify__toast {
   background-color: #111214;
   color: white;
 }
+
+.Toastify__progress-bar {
+  background-color: #576def;
+}
 .Toastify__toast--info {
   border: 1px solid transparent;
 }
-.Toastify__toast--success {
-  border: 1px solid #576def;
+.Toastify__close-button {
+  color: white;
 }
-.Toastify__toast--error {
-  border: 1px solid #f24040;
+
+.Toastify__progress-bar--success {
+  background-color: #576def;
 }
