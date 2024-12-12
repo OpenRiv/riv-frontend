@@ -5,7 +5,7 @@ import MinuteCard from "../../../component/card/MinuteCard";
 import { ListView } from "../../../component/list/listview";
 import { categories, sortItems } from "../../../component/list/list_type";
 import { formatDate } from "../utils/formatDate";
-import MarkUpSection from "./markup_section";
+import MarkUpSection from "./MarkupSection";
 import useSheet from "./hook/useSheet";
 import useMinutes from "./hook/useMinutes";
 

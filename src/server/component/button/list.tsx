@@ -6,6 +6,7 @@ interface ListProps {
   icon: ReactNode;
   text: string;
   className?: string;
+  onClick?: VoidFunction;
 }
 
 export default function List({
@@ -13,10 +14,12 @@ export default function List({
   icon,
   text,
   className = "",
+  onClick = () => {},
 }: ListProps) {
   const defaultColor = isAct ? "text-gray-09" : "text-gray-07";
   return (
     <div
+      onClick={onClick}
       className={cn(
         className,
         defaultColor,
