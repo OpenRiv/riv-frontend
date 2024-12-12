@@ -11,6 +11,7 @@ export function useCodeListener() {
       const allowedOrigins = [
         "http://localhost:5173", // 로컬 개발 환경
         "https://riv-frontend.vercel.app", // 배포된 환경
+        "https://www.riv-discord.online", // 도메인
       ];
 
       // 메시지의 origin이 허용된 목록에 있는지 확인

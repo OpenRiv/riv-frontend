@@ -1,3 +1,19 @@
 .toastui-editor-toolbar {
-  display: none;
+  background-color: #1e1f22 !important;
+}
+.toastui-editor-toolbar-group {
+  background-color: #1e1f22 !important;
+}
+.toastui-editor-toolbar-icons {
+  background-color: #1e1f22 !important;
+}
+.toastui-editor-defaultUI-toolbar {
+  background-color: #1e1f22 !important;
+  padding-left: 12px;
+}
+
+.toastui-editor-toolbar-group {
+}
+
+.more {
 }

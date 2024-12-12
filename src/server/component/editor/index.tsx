@@ -33,9 +33,15 @@ export default function RivEditor({ content = "", onChange }: RivEditorProps) {
         initialEditType="wysiwyg"
         useCommandShortcut={true}
         hideModeSwitch={true}
-        toolbarItems={[]}
         height={`${toastHeight}px`}
         onChange={handleChange}
+        toolbarItems={[
+          ["heading", "bold", "italic", "strike"],
+          ["hr", "quote"],
+          ["ul", "ol", "task", "indent", "outdent"],
+          ["table", "link"],
+          ["code", "codeblock"],
+        ]}
       />
     </div>
   );

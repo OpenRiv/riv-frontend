@@ -75,7 +75,7 @@ export default function MinuteSection({ serverId }: Props) {
       {isFetchingNextPage && <div className="text-center">로딩 중...</div>}
 
       <div
-        className={`fixed top-0 right-0 h-full w-2/5 bg-gray-04 shadow-lg transform transition-transform duration-500 ease-in-out ${
+        className={`fixed top-0 right-0 h-full w-1/2 bg-gray-04 shadow-lg transform transition-transform duration-500 ease-in-out ${
           isSheetOpen ? "translate-x-0" : "translate-x-full"
         } z-20`}
       >
