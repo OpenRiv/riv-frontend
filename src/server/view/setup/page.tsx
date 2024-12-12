@@ -17,7 +17,7 @@ export default function SetupPage() {
   return (
     <>
       <div className="flex flex-row h-full bg-gray-04">
-        <SideSection />
+        <SideSection guildId={id} />
         {isLoading || isError ? <></> : <MinuteSection serverId={serverId} />}
       </div>
       <RivToast />

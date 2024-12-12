@@ -9,14 +9,19 @@ import { cn } from "../../../common/utils/cn";
 export default function ServerProfile({
   svIcon,
   svName,
+  guildId,
   className = "",
 }: SPProps) {
+  const guildUrl = `https://discord.com/channels/${guildId}`;
   return (
     <button
       className={cn(
         className,
         "active:border-[0.15rem] active:border-discord-left w-[16.5rem] h-[2.75rem] bg-[#17181E] rounded-[0.35rem] text-white group"
       )}
+      onClick={() => {
+        window.open(guildUrl, "_blank", "noopener, noreferrer");
+      }}
     >
       <div className="flex flex-row items-center justify-between px-[0.75rem]">
         <div className="flex flex-row items-center space-x-[0.5rem]">
@@ -38,4 +43,5 @@ interface SPProps {
   svIcon: string | null;
   svName: string;
   className?: string;
+  guildId: string;
 }
