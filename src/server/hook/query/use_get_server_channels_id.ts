@@ -1,38 +1,47 @@
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import { client } from "../../../common/api/backend/client";
 
-// 특정 채널의 요약본 텍스트 파일 목록을 페이징 처리하여 조회하는 API 훅
 export const useGetServerChannelsId = ({
   channelId,
-  page = 0,
   size = 9,
-}: Props) => {
+}: InfiniteProps) => {
   const getServerChannelsId = async ({
     channelId,
-    page = 0,
-    size = 9,
-  }: Props) => {
+    pageParam = 0, // 기본값 설정
+    size,
+  }: InfiniteQueryProps) => {
     const response = await client<RespType>({
       url: `/servers/channels/${channelId}`,
       method: "get",
       params: {
-        page: page,
+        page: pageParam,
         size: size,
       },
     });
     return response.data;
   };
 
-  return useQuery({
-    queryKey: ["servers-channels-channelId", channelId, page, size],
-    queryFn: () => getServerChannelsId({ channelId, page, size }),
+  return useInfiniteQuery({
+    queryKey: ["servers-channels-channelId", channelId],
+    queryFn: ({ pageParam }) =>
+      getServerChannelsId({ channelId, pageParam, size }),
+    getNextPageParam: (lastPage, allPages) => {
+      return lastPage.data.last ? undefined : allPages.length; // 다음 페이지 번호 계산
+    },
+    initialPageParam: 0, // 초기 페이지 설정
+    enabled: !!channelId, // channelId가 유효할 때만 활성화
   });
 };
 
-interface Props {
+interface InfiniteProps {
   channelId: number;
-  page?: number;
   size?: number;
+}
+
+interface InfiniteQueryProps {
+  channelId: number;
+  pageParam?: number;
+  size: number;
 }
 
 interface RespType {

@@ -21,7 +21,7 @@ export const useGetServerIdChannels = ({ serverId }: Props) => {
 };
 
 interface Props {
-  serverId: string;
+  serverId: number;
 }
 
 interface RespType {

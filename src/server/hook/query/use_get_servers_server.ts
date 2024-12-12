@@ -25,7 +25,7 @@ export const useGetServersServer = ({ serverUnique, isRiv = false }: Props) => {
 
 interface Props {
   serverUnique: string;
-  isRiv: boolean;
+  isRiv?: boolean;
 }
 
 interface RespType {

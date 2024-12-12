@@ -29,11 +29,16 @@ export default function MinuteCard({
     );
   };
 
+  const cutPreview: string = preview
+    .replace(/[^a-zA-Z가-힣0-9\s.]/g, "") // 특수문자 제거 (#, \n 등), '.'은 포함
+    .replace(/\s+/g, " ") // 여러 개의 공백을 하나로 변환
+    .trim(); // 앞뒤 공백 제거
+
   return (
     <div className="relative w-full">
       <div className="bg-[#383A45] text-gray-07 w-full h-[9rem] rounded-[0.9rem] space-y-[0.7rem] flex flex-col justify-center pl-[1.5rem]">
         <h1 className="font-bold text-gray-09 text-[1.2rem]">{title}</h1>
-        <p className={textStyle}>{preview}</p>
+        <p className={textStyle}>{cutPreview}</p>
         <p className={textStyle}>{date}</p>
       </div>
       <div className="absolute top-[0.5rem] right-[0.75rem] group flex flex-col items-end">

@@ -1,49 +1,18 @@
 import { X } from "lucide-react";
 import RivEditor from "../../../component/editor";
 import { FloppyDiskBack } from "@phosphor-icons/react";
-import { useGetRecodingId } from "../../../hook/query/use_get_recoding_id";
-import { usePatchRecoding } from "../../../hook/mutation/use_patch_recoding";
 import { formatDate } from "../utils/formatDate";
-import { useState, useEffect } from "react";
-import { toast } from "react-toastify";
+import useMarkUp from "./hook/useMarkup";
 
 export default function MarkUpSection({ recodingId, toggleSheet }: Props) {
-  const { data, isLoading } = useGetRecodingId({ recodingId });
-  const { mutate: patchRecoding } = usePatchRecoding();
-
-  const [title, setTitle] = useState("");
-  const [text, setText] = useState("");
-
-  useEffect(() => {
-    if (data) {
-      setTitle(data.title || ""); // title 동기화
-      setText(data.text || ""); // text 동기화
-    }
-  }, [data]);
-
-  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTitle(e.target.value);
-  };
-
-  const handleTextChange = (newText: string) => {
-    setText(newText); // 에디터에서 변경된 텍스트를 상태에 저장
-  };
-
-  const handleSave = () => {
-    patchRecoding(
-      { recodingId, title, text },
-      {
-        onSuccess: () => {
-          toast.success("회의록이 저장되었습니다.");
-          toggleSheet();
-          window.location.reload();
-        },
-        onError: () => {
-          toast.error("저장에 실패했습니다.");
-        },
-      }
-    );
-  };
+  const {
+    data,
+    isLoading,
+    title,
+    handleTitleChange,
+    handleTextChange,
+    handleSave,
+  } = useMarkUp({ recodingId, toggleSheet });
 
   if (isLoading) {
     return <div>Loading...</div>;
