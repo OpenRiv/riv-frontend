@@ -1,7 +1,7 @@
 import { FunnelSimple, SortAscending } from "@phosphor-icons/react";
 import Filter from "../../../component/button/filter";
 import SearchBar from "../../../component/input/search_bar";
-import MinuteCard from "../../../component/card/minute_card";
+import MinuteCard from "../../../component/card/MinuteCard";
 import { ListView } from "../../../component/list/listview";
 import { categories, sortItems } from "../../../component/list/list_type";
 import { formatDate } from "../utils/formatDate";

@@ -1,6 +1,6 @@
 import { FolderSimplePlus } from "@phosphor-icons/react";
 import List from "../../../component/button/list";
-import ServerProfile from "../../../component/card/server_profile";
+import ServerProfile from "../../../component/card/ServerProfile";
 
 export default function SideSection() {
   const svName: string = localStorage.getItem("svName") || "Empty";

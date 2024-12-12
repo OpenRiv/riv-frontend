@@ -7,6 +7,7 @@ import {
   QueryClientProvider,
 } from "@tanstack/react-query";
 import { APIResponseError } from "endpoint-client";
+import ScrollToTop from "./route/ScollToTop";
 
 function App() {
   const queryClient = new QueryClient({
@@ -30,6 +31,7 @@ function App() {
   return (
     <RecoilRoot>
       <BrowserRouter basename={import.meta.env.PUBLIC_URL}>
+        <ScrollToTop />
         <QueryClientProvider client={queryClient}>
           <MainRouter />
         </QueryClientProvider>
