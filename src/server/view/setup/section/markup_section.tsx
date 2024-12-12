@@ -4,7 +4,11 @@ import { FloppyDiskBack } from "@phosphor-icons/react";
 import { formatDate } from "../utils/formatDate";
 import useMarkUp from "./hook/useMarkup";
 
-export default function MarkUpSection({ recodingId, toggleSheet }: Props) {
+export default function MarkUpSection({
+  recodingId,
+  channelId,
+  toggleSheet,
+}: Props) {
   const {
     data,
     isLoading,
@@ -12,7 +16,7 @@ export default function MarkUpSection({ recodingId, toggleSheet }: Props) {
     handleTitleChange,
     handleTextChange,
     handleSave,
-  } = useMarkUp({ recodingId, toggleSheet });
+  } = useMarkUp({ recodingId, channelId, toggleSheet });
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -53,5 +57,6 @@ export default function MarkUpSection({ recodingId, toggleSheet }: Props) {
 
 interface Props {
   recodingId: number;
+  channelId: number;
   toggleSheet: VoidFunction;
 }

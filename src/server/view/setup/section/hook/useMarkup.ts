@@ -2,13 +2,20 @@ import { useEffect, useState } from "react";
 import { usePatchRecoding } from "../../../../hook/mutation/use_patch_recoding";
 import { useGetRecodingId } from "../../../../hook/query/use_get_recoding_id";
 import { toast } from "react-toastify";
+import { useQueryClient } from "@tanstack/react-query";
 
 interface Props {
   recodingId: number;
   toggleSheet: VoidFunction;
+  channelId: number;
 }
 
-export default function useMarkUp({ recodingId, toggleSheet }: Props) {
+export default function useMarkUp({
+  recodingId,
+  channelId,
+  toggleSheet,
+}: Props) {
+  const queryClient = useQueryClient();
   const { data, isLoading } = useGetRecodingId({ recodingId });
   const { mutate: patchRecoding } = usePatchRecoding();
 
@@ -35,12 +42,14 @@ export default function useMarkUp({ recodingId, toggleSheet }: Props) {
       { recodingId, title, text },
       {
         onSuccess: () => {
-          toast.success("회의록이 저장되었습니다.");
+          toast.success("회의록이 수정되었습니다.");
           toggleSheet();
-          window.location.reload();
+          queryClient.invalidateQueries({
+            queryKey: ["servers-channels-channelId", channelId],
+          });
         },
         onError: () => {
-          toast.error("저장에 실패했습니다.");
+          toast.error("수정에 실패했습니다.");
         },
       }
     );

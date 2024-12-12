@@ -80,7 +80,11 @@ export default function MinuteSection({ serverId }: Props) {
         } z-20`}
       >
         {recodingId && (
-          <MarkUpSection toggleSheet={toggleSheet} recodingId={recodingId} />
+          <MarkUpSection
+            channelId={channelId}
+            toggleSheet={toggleSheet}
+            recodingId={recodingId}
+          />
         )}
       </div>
 
