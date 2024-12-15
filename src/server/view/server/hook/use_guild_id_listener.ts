@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
-import { usePostServers } from "../../../hook/mutation/use_post_servers";
+import { usePostServers } from "../../../hook/mutation/usePostServer";
 
 export const useGuildIdListener = () => {
   const [guildId, setGuildId] = useState<string | null>(null);

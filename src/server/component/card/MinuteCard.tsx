@@ -1,7 +1,7 @@
 import { DotsThree } from "@phosphor-icons/react";
-import { useDeleteRecoding } from "../../hook/mutation/use_delete_recoding";
 import { toast } from "react-toastify";
 import { useQueryClient } from "@tanstack/react-query";
+import { useDeleteRecoding } from "../../hook/mutation/useDeleteRecording";
 
 export default function MinuteCard({
   title,

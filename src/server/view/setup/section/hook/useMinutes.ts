@@ -1,6 +1,6 @@
 import { useRef, useCallback, useState } from "react";
-import { useGetServerIdChannels } from "../../../../hook/query/use_get_servers_id_channels";
-import { useGetServerChannelsId } from "../../../../hook/query/use_get_server_channels_id";
+import { useGetServerIdChannels } from "../../../../hook/query/useGetServersIdChannels";
+import { useGetServerChannelsId } from "../../../../hook/query/useGetServerChannelsId";
 
 export default function useMinutes({ serverId }: Props) {
   const [recodingId, setRecodingId] = useState<number>(0);

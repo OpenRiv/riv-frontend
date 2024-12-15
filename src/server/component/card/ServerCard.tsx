@@ -7,6 +7,7 @@ import {
 } from "../../../common/component/radix/avator";
 import Entry from "../button/entry";
 import { handleTap } from "../../../common/view/main/utils/handle_tap";
+import { useInviteBot } from "../../hook/query/useGetInviteBot";
 
 export default function ServerCard({
   guildId,
@@ -16,6 +17,34 @@ export default function ServerCard({
   isRiv = false,
 }: ServerCardProps) {
   const navigate = useNavigate();
+
+  // useInviteBot 훅 호출
+  const { data, isError, isLoading } = useInviteBot({
+    guildId,
+    redirectUrl: `https://www.riv-discord.online/oauth2/authorization/discord`,
+  });
+
+  // Entry 버튼 클릭 핸들러
+  const handleEntryClick = () => {
+    if (isRiv) {
+      // 리브가 있는 서버 - 설정 페이지로 이동
+      navigate(`/setup/${guildId}`);
+      localStorage.setItem("svIcon", svIcon);
+      localStorage.setItem("svName", serverName);
+    } else {
+      // 리브가 없는 서버 - 봇 초대 로직 처리
+      if (isLoading) {
+        alert("봇 초대 URL을 불러오는 중입니다. 잠시만 기다려주세요.");
+        return;
+      }
+      if (isError || !data?.redirectUrl) {
+        alert("봇 초대 URL을 가져오는 중 오류가 발생했습니다.");
+        return;
+      }
+      handleTap({ url: data.redirectUrl }); // Discord 봇 초대 URL 열기
+      localStorage.setItem("guildId", guildId); // 길드 ID 저장
+    }
+  };
 
   return (
     <div className="w-[22.1875rem]">
@@ -42,37 +71,13 @@ export default function ServerCard({
             {isOwner ? "Owner" : "Member"}
           </p>
         </div>
-        <Entry
-          isRiv={isRiv}
-          onClick={() => {
-            // 리브가 있는 서버 - 회의록 관리 페이지 이동
-            if (isRiv) {
-              navigate(`/setup/${guildId}`);
-              localStorage.setItem("svIcon", svIcon);
-              localStorage.setItem("svName", serverName);
-            }
-            // 리브가 없는 서버 - 리브봇 추가 로직
-            if (!isRiv) {
-              // 리다이렉트 url
-              const redirectUrl: string = encodeURIComponent(
-                import.meta.env.VITE_REDIRECT_URI
-              );
-              // 리브 봇 추가 url
-              const botAddUrl: string = `${
-                import.meta.env.VITE_BOT_ADD
-              }&guild_id=${guildId}&redirect_uri=${redirectUrl}`;
-              // 창 띄우기
-              handleTap({ url: botAddUrl });
-              // 길드 id 저장하기
-              localStorage.setItem("guildId", guildId);
-            }
-          }}
-        />
+        <Entry isRiv={isRiv} onClick={handleEntryClick} />
       </div>
     </div>
   );
 }
 
+// Props 타입 정의
 interface ServerCardProps {
   guildId: string;
   svIcon: string;

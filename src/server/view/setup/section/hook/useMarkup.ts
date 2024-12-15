@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { usePatchRecoding } from "../../../../hook/mutation/use_patch_recoding";
-import { useGetRecodingId } from "../../../../hook/query/use_get_recoding_id";
+import { usePatchRecoding } from "../../../../hook/mutation/usePatchRecording";
+import { useGetRecodingId } from "../../../../hook/query/useGetRecordingId";
 import { toast } from "react-toastify";
 import { useQueryClient } from "@tanstack/react-query";
 
