@@ -21,7 +21,7 @@ export default function ServerCard({
   // useInviteBot 훅 호출
   const { data, isError, isLoading } = useInviteBot({
     guildId,
-    redirectUrl: `https://www.riv-discord.online/oauth2/authorization/discord`,
+    redirectUrl: `${window.location.origin}/login/oauth2/code/discord`,
   });
 
   // Entry 버튼 클릭 핸들러

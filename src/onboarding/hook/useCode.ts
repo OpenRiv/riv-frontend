@@ -18,18 +18,6 @@ export default function useCode() {
         // 예외 처리 로직 짜야됨
         window.close();
       }
-    } else {
-      // 봇 추가 로직 - 쿼리 파람에 code가 없을 때
-      if (window.opener) {
-        window.opener.postMessage(
-          { status: "success", message: "리브가 성공적으로 추가됐습니다." },
-          "*"
-        );
-        window.close();
-      } else {
-        console.error("알 수 없는 에러 발생");
-        window.close();
-      }
     }
   }, []);
 }
