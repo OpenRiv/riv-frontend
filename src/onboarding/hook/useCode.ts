@@ -15,7 +15,6 @@ export default function useCode() {
         );
         window.close(); // 새 창 닫기
       } else {
-        // 예외 처리 로직 짜야됨
         window.close();
       }
     }

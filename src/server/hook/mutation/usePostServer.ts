@@ -6,14 +6,11 @@ export const usePostServers = () => {
   // API 요청 함수
   const postServers = async (serverUnique: string): Promise<RespType> => {
     const response = await client<RespType>({
-      url: "/servers",
-      method: "post",
-      data: { serverUnique },
+      url: `/servers?serverUnique=${serverUnique}`,
     });
     return response.data;
   };
 
-  // useMutation 정의
   return useMutation({
     mutationFn: postServers,
   });

@@ -41,8 +41,8 @@ export default function ServerCard({
         alert("봇 초대 URL을 가져오는 중 오류가 발생했습니다.");
         return;
       }
-      handleTap({ url: data.redirectUrl }); // Discord 봇 초대 URL 열기
       localStorage.setItem("guildId", guildId); // 길드 ID 저장
+      handleTap({ url: data.redirectUrl }); // Discord 봇 초대 URL 열기
     }
   };
 
