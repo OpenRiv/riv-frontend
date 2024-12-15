@@ -12,7 +12,7 @@ export default function ServerProfile({
   guildId,
   className = "",
 }: SPProps) {
-  const guildUrl = `https://discord.com/channels/${guildId}`;
+  const guildUrl = `discord://https://discord.com/channels/${guildId}`;
   return (
     <button
       className={cn(
@@ -31,7 +31,12 @@ export default function ServerProfile({
               {svName.slice(0, 1)}
             </AvatarFallback>
           </Avatar>
-          <p className="font-semibold">{svName}</p>
+          <p
+            className="font-semibold truncate max-w-[10rem] overflow-hidden text-ellipsis"
+            title={svName}
+          >
+            {svName}
+          </p>
         </div>
         <ChevronDown className="transition-transform duration-200 group-hover:rotate-180" />
       </div>

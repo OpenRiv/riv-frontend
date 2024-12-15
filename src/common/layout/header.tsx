@@ -32,13 +32,18 @@ export default function Header() {
     <section className="w-full h-[4rem] bg-gray-03 px-[2rem]">
       <section className="max-w-full h-full mx-[1rem] flex flex-row items-center justify-between">
         <div
-          className="flex flex-row items-center gap-[1rem] cursor-pointer"
+          className="flex flex-row items-center gap-[1rem] cursor-pointer py-[1rem] px-[0.5rem] hover:bg-slate-700"
           onClick={() => navigate(`/server`)}
         >
           <RivFace className="size-[2rem]" />
           <p className="text-gray-09 font-black text-[1.25rem]">RIV</p>
         </div>
-        <div className="flex flex-row items-center gap-[0.5rem]">
+        <div
+          className="flex flex-row items-center gap-[0.5rem] cursor-pointer hover:bg-slate-700 py-[1rem] px-[0.5rem]"
+          onClick={() => {
+            window.open(`discord://`, "_blank", "noopener, noreferrer");
+          }}
+        >
           <Avatar className="size-[2rem]">
             <AvatarImage
               src={
