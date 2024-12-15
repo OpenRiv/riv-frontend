@@ -7,7 +7,7 @@ import { sectionState } from "../state/state";
 export default function SideSection({ guildId }: Props) {
   const svName: string = localStorage.getItem("svName") || "Empty";
   const svIcon: string =
-    localStorage.getItem("svIcon") || "assets/riv/riv_face.png";
+    localStorage.getItem("svIcon") || "assets/riv/riv_face.webp";
 
   const [isMinuteSection] = useRecoilState(sectionState);
   const setSectionState = useSetRecoilState(sectionState);

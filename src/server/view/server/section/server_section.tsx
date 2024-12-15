@@ -5,8 +5,10 @@ import "react-loading-skeleton/dist/skeleton.css";
 import ServerSectionLoading from "../skeleton/server_section";
 import { useGetBotInGuild } from "../../../../common/hook/query/use_get_guilds_member";
 import { processAndGroupGuilds } from "../utils/guild_filter";
+import useInviteBotListener from "../../../hook/useInviteBotListener";
 export default function ServerSection() {
   const { count } = useResServerCard();
+  useInviteBotListener();
   const { data: guildList, isLoading, isError } = useUserGuilds();
   const { data: guildWithBotList } = useGetBotInGuild();
 

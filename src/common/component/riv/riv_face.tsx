@@ -3,5 +3,5 @@ interface RivProps {
 }
 
 export default function RivFace({ className = "" }: RivProps) {
-  return <img className={className} src={"/assets/riv/riv_face.png"} />;
+  return <img className={className} src={"/assets/riv/riv_face.webp"} />;
 }

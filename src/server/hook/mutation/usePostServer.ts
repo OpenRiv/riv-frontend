@@ -6,6 +6,7 @@ export const usePostServers = () => {
   // API 요청 함수
   const postServers = async (serverUnique: string): Promise<RespType> => {
     const response = await client<RespType>({
+      method: "post",
       url: `/servers?serverUnique=${serverUnique}`,
     });
     return response.data;
