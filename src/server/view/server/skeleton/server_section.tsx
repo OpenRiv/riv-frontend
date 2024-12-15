@@ -1,4 +1,4 @@
-import { useResServerCard } from "../../../hook/use_res_server_card";
+import { useResServerCard } from "../../../hook/useResServerCard";
 import Skeleton from "react-loading-skeleton";
 
 export default function ServerSectionLoading() {
