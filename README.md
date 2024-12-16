@@ -11,19 +11,16 @@ Riv-Frontend는 React 기반의 웹 클라이언트 프로젝트입니다. 이 �
 
 ## 주요 기능 ✨
 
-<p align="center">
-  <img src="https://img.icons8.com/color/48/000000/discord--v2.png" alt="Discord Icon" width="32" height="32"/>
-  <strong style="font-size: 20px;">디스코드 Oauth2 로그인</strong>
-</p>
+- **✔️ 디스코드 Oauth2 로그인**
   - Discord Oauth2 로그인 시스템을 통해 온보딩을 구현하고, accessToken을 활용해 사용자의 프로필, 서버 정보 등을 활용할 수 있습니다.
   
-- **📝 서버 조회 및 Bot 추가**
+- **👨‍💻 서버 조회 및 Bot 추가**
   - 초대 권한이 있는 서버 목록을 조회하고, Discord 봇이 있는지 유무를 파악합니다. 또한 봇이 없는 서버에 봇을 초대할 수 있습니다.
   
-- **📊 회의록 조회, 수정, 삭제**
+- **🗒️ 회의록 조회, 수정, 삭제**
   -  Discord 봇으로부터 등록된 회의록에 대한 조회, 수정, 삭제 기능을 제공합니다.
     
-- **💬 디스코드 기반 UI**
+- **:dependabot: 디스코드 기반 UI**
   - 디스코드 디자인 UI를 제공하여 사용자에게 친숙하고 편리한 경험을 제공합니다.
    
 # Riv-Bot Manual 📖
@@ -52,16 +49,7 @@ Riv-Frontend는 React 기반의 웹 클라이언트 프로젝트입니다. 이 �
    cd riv-frontend
    ```
 
-2. **가상환경 생성**
-   ```bash
-   python -m venv venv
-   # Windows
-   .\venv\Scripts\activate
-   # Linux/Mac
-   source venv/bin/activate
-   ```
-
-3. **의존성 설치**
+2. **의존성 설치**
    ```bash
    yarn install
    ```
@@ -71,66 +59,28 @@ Riv-Frontend는 React 기반의 웹 클라이언트 프로젝트입니다. 이 �
 ### 환경 변수 설정
 1. `.env` 파일 생성:
    ```env
-   DISCORD_BOT_TOKEN=your_token_here
-   OPENAI_API_KEY=your_api_key_here
+   VITE_BOT_TOKEN=your_bot_token_here
+   VITE_REDIRECT_URI=your_oauth2_redirect_url_here
+   VITE_CLIENT_SECRET=your_bot_client_secret_key_here
+   VITE_CLIENT_ID=your_bot_client_id_here
+   VITE_DISCORD_API_URL = https://discord.com/api
+   VITE_API_URL = your_backend_url_here
    ```
 
-2. 로깅 설정:
-   ```python
-   # logging level 조정
-   level=logging.DEBUG  # 개발 시
-   level=logging.INFO   # 프로덕션 시
-   ```
+## 3. 사용자 가이드
 
-### IDE 설정 (VS Code 기준)
-```json
-{
-    "python.linting.enabled": true,
-    "python.linting.pylintEnabled": true,
-    "python.formatting.provider": "black",
-    "editor.formatOnSave": true
-}
-```
+### / - 메인페이지
+![Group 120](https://github.com/user-attachments/assets/e851065a-c63f-4d72-a4cf-52c15bbe5ab0)
+1. **메인 캐릭터**
 
-## 3. 봇 설정 가이드
+2. **서비스 소개 문구**
 
-### Discord Developer Portal 설정
-1. [Discord Developer Portal](https://discord.com/developers/applications) 접속
-2. "New Application" 클릭
-3. Bot 섹션에서:
-   - Privileged Gateway Intents 모두 활성화
-   - TOKEN 생성 및 복사
-4. OAuth2 URL 생성:
-   - `bot` scope 선택
-   - 필요한 권한 선택:
-     - Send Messages
-     - Read Message History
-     - Connect
-     - Speak
-     - Use Voice Activity
+3. **디스코드 로그인 버튼**
+- 클릭 시 디스코드 로그인 창 생성
+- 디스코드 로그인 창 인증 후 서버페이지로 이동
 
-### 봇 권한 설정
-```python
-intents = discord.Intents.default()
-intents.message_content = True
-intents.voice_states = True
-intents.guilds = True
-intents.members = True
-```
-
-## 4. 사용자 가이드
-
-### 기본 명령어
-1. **회의 시작**
-   ```
-   !회의
-   ```
-   - 음성 채널 접속 필요
-   - 카테고리 선택 또는 직접 입력
-
-2. **회의 종료**
-   - UI 버튼 클릭
-   - 회의록 자동 생성
+4. **깃허브 버튼**
+- 클릭 시 https://github.com/OpenRiv 탭을 띄움
 
 ### 회의록 형식 커스터마이징
 `process_recording` 함수의 `markdown_content` 템플릿 수정:
