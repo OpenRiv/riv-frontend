@@ -1,4 +1,4 @@
-import Riv from "../../../../common/component/riv/riv";
+import Riv from "../../../../common/component/riv/Riv";
 
 export default function TitleSection() {
   return (

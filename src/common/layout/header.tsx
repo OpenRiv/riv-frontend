@@ -1,7 +1,7 @@
-import RivFace from "../component/riv/riv_face";
-import { Avatar, AvatarFallback, AvatarImage } from "../component/radix/avator";
+import RivFace from "../component/riv/RivFace";
+import { Avatar, AvatarFallback, AvatarImage } from "../component/radix/Avator";
 import { useNavigate } from "react-router-dom";
-import { useUserInfo } from "../hook/query/use_get_user_info";
+import { useUserInfo } from "../hook/query/useGetUserInfo";
 
 export default function Header() {
   const navigate = useNavigate();

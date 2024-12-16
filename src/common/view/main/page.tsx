@@ -1,6 +1,6 @@
-import ServiceButton from "../../../onboarding/component/service_button";
-import Riv from "../../component/riv/riv";
-import { handleTap } from "./utils/handle_tap";
+import ServiceButton from "../../../onboarding/component/ServiceButton";
+import Riv from "../../component/riv/Riv";
+import { handleTap } from "./utils/handleTap";
 import { useCodeListener } from "./hook/useCodeListener";
 
 export default function MainPage() {

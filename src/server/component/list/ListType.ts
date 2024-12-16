@@ -1,4 +1,4 @@
-import { Item } from "./listview";
+import { Item } from "./ListView";
 
 export const sortItems: Item[] = [
   { name: "정렬 기준", isToggle: false },

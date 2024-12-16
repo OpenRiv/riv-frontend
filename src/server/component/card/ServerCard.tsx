@@ -1,13 +1,13 @@
 import { useNavigate } from "react-router-dom";
-import { AspectRatio } from "../../../common/component/radix/aspect_ratio";
+import { AspectRatio } from "../../../common/component/radix/AspectRatio";
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "../../../common/component/radix/avator";
-import Entry from "../button/entry";
-import { handleTap } from "../../../common/view/main/utils/handle_tap";
+} from "../../../common/component/radix/Avator";
+import { handleTap } from "../../../common/view/main/utils/handleTap";
 import { useInviteBot } from "../../hook/query/useGetInviteBot";
+import Entry from "../button/Entry";
 
 export default function ServerCard({
   guildId,

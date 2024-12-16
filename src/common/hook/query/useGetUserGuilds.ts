@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import {
   DiscordGuild,
   getUserGuilds,
-} from "../../api/discord/get/get_user_guilds";
+} from "../../api/discord/get/getUserGuilds";
 
 export const useUserGuilds = () => {
   return useQuery<DiscordGuild[]>({
