@@ -76,11 +76,11 @@ Riv-Frontend는 React 기반의 웹 클라이언트 프로젝트입니다. 이 �
 2. **서비스 소개 문구**
 
 3. **디스코드 로그인 버튼**
-- 클릭 시 디스코드 로그인 창 생성
-- 디스코드 로그인 창 인증 후 서버페이지로 이동
+  - 클릭 시 디스코드 로그인 창 생성
+  - 디스코드 로그인 창 인증 후 서버페이지로 이동
 
 4. **깃허브 버튼**
-- 클릭 시 https://github.com/OpenRiv 탭을 띄움
+  - 클릭 시 https://github.com/OpenRiv 탭을 띄움
 
 ### 회의록 형식 커스터마이징
 `process_recording` 함수의 `markdown_content` 템플릿 수정:
