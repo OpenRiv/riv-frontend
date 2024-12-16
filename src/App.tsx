@@ -9,7 +9,6 @@ import {
 import { APIResponseError } from "endpoint-client";
 import ScrollToTop from "./route/ScollToTop";
 
-// App.tsx
 function App() {
   const queryClient = new QueryClient({
     queryCache: new QueryCache({
