@@ -1,5 +1,5 @@
 import { FolderSimplePlus } from "@phosphor-icons/react";
-import List from "../../../component/button/list";
+import List from "../../../component/button/List";
 import ServerProfile from "../../../component/card/ServerProfile";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { sectionState } from "../state/state";
