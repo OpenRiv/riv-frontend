@@ -11,7 +11,10 @@ Riv-Frontend는 React 기반의 웹 클라이언트 프로젝트입니다. 이 �
 
 ## 주요 기능 ✨
 
-- **![Discord](https://img.icons8.com/color/48/000000/discord--v2.png) 디스코드 Oauth2 로그인**
+<p align="center">
+  <img src="https://img.icons8.com/color/48/000000/discord--v2.png" alt="Discord Icon" width="32" height="32"/>
+  <strong style="font-size: 20px;">디스코드 Oauth2 로그인</strong>
+</p>
   - Discord Oauth2 로그인 시스템을 통해 온보딩을 구현하고, accessToken을 활용해 사용자의 프로필, 서버 정보 등을 활용할 수 있습니다.
   
 - **📝 서버 조회 및 Bot 추가**
