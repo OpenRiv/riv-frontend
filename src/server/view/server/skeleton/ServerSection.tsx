@@ -13,13 +13,33 @@ export default function ServerSectionLoading() {
               key={index}
               className="flex flex-col items-start space-y-[1rem]"
             >
-              <Skeleton height={"12rem"} width={"22rem"} />
+              <Skeleton
+                highlightColor="#ffffff"
+                baseColor="#BBB9B9"
+                height={"12rem"}
+                width={"22rem"}
+              />
               <div className="flex flex-row justify-between w-full">
                 <div>
-                  <Skeleton width={"7rem"} height={"1.5rem"} />
-                  <Skeleton width={"5rem"} height={"1.2rem"} />
+                  <Skeleton
+                    highlightColor="#ffffff"
+                    baseColor="#BBB9B9"
+                    width={"7rem"}
+                    height={"1.5rem"}
+                  />
+                  <Skeleton
+                    highlightColor="#ffffff"
+                    baseColor="#BBB9B9"
+                    width={"5rem"}
+                    height={"1.2rem"}
+                  />
                 </div>
-                <Skeleton width={"6rem"} height={"4rem"} />
+                <Skeleton
+                  highlightColor="#ffffff"
+                  baseColor="#BBB9B9"
+                  width={"6rem"}
+                  height={"4rem"}
+                />
               </div>
             </div>
           ))}

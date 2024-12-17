@@ -90,20 +90,23 @@ export function MinuteCardLoading() {
       <div className="bg-[#383A45] text-gray-07 w-full h-[9rem] rounded-[0.9rem] space-y-[0.7rem] flex flex-col justify-center pl-[1.5rem]">
         {/* 제목 Skeleton */}
         <Skeleton
+          highlightColor="#ffffff"
+          baseColor="#BBB9B9"
           width="30%"
           height="1.2rem"
-          style={{ borderRadius: "0.5rem" }}
         />
         {/* 미리보기 Skeleton */}
         <Skeleton
+          highlightColor="#ffffff"
+          baseColor="#BBB9B9"
           width="80%"
           height="1rem"
-          style={{ borderRadius: "0.5rem" }}
         />
         <Skeleton
+          highlightColor="#ffffff"
+          baseColor="#BBB9B9"
           width="70%"
           height="1rem"
-          style={{ borderRadius: "0.5rem" }}
         />
       </div>
       <div className="absolute top-[0.5rem] right-[0.75rem] flex flex-col items-end">
