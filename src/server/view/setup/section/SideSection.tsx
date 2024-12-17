@@ -1,4 +1,4 @@
-import { FolderSimplePlus } from "@phosphor-icons/react";
+import { Article, FolderSimplePlus } from "@phosphor-icons/react";
 import List from "../../../component/button/List";
 import ServerProfile from "../../../component/card/ServerProfile";
 import { useRecoilState, useSetRecoilState } from "recoil";
@@ -28,16 +28,16 @@ export default function SideSection({ guildId }: Props) {
         svName={svName}
         svIcon={svIcon}
       />
-      <div className="ml-[3.5rem] flex flex-col gap-[1.5rem] w-full">
+      <div className="ml-[5.5rem] flex flex-col gap-[1.5rem] w-full">
         <List
           isAct={isMinuteSection}
-          icon={<FolderSimplePlus size={32} weight="fill" />}
+          icon={<FolderSimplePlus size={24} weight="fill" />}
           text="저장된 회의록"
           onClick={handleSavedMinutesClick}
         />
         <List
           isAct={!isMinuteSection}
-          icon={<FolderSimplePlus size={32} weight="fill" />}
+          icon={<Article size={24} weight="fill" />}
           text="사용 설명서"
           onClick={handleManualClick}
         />

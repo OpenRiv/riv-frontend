@@ -26,7 +26,7 @@ export default function List({
         "flex items-center h-fit cursor-pointer hover:text-gray-09"
       )}
     >
-      <span className="mr-[0.5rem]">{icon}</span>
+      <span className="mr-[1.25rem]">{icon}</span>
       <span className="font-medium text-[1.2rem]">{text}</span>
     </div>
   );
