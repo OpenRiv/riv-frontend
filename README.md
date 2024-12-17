@@ -138,7 +138,7 @@ Riv-Frontend는 React 기반의 웹 클라이언트 프로젝트입니다. 이 �
 5. **회의록 저장 버튼**
    - 클릭 시 회의록을 업데이트
 
-## 5. 개발자 가이드
+## 4. 개발자 가이드
 
 ### 코드 구조
 ```
@@ -167,6 +167,13 @@ src/
 ├── index.css
 └── main.tsx
 ```
+### 기술 스택
+   - Typescript
+   - Axios : API 통신 라이브러리
+   - Tailwindcss : CSS 라이브러리
+   - Recoil : 전역 상태 관리 라이브러리
+   - React-Router-Dom : 페이지 이동 간편화 라이브러리
+   - Tanstack : 데이터 관리 간편화 라이브러리
 
 ### 주요 코드
 1. **QueryClient**
@@ -193,61 +200,89 @@ src/
    });
    ```
 
-2. **AudioProcessor**
+2. **axios-client**
+   - 리브 관리자페이지는 두개의 API를 사용하므로 axios-client 함수가 두개로 나뉨
    ```typescript
-   async def process_recording(sink, channel, meeting_title, members, start_time, end_time):
-       # 오디오 처리 로직
+   // 관리자페이지 API를 사용하기 위한 함수
+   export const client = axios.create({
+    baseURL: import.meta.env.VITE_API_URL,
+    headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    // 디스코드 API를 사용하기 위한 래퍼 함수
+    export const discordClientAuth = async <T>(
+      config: AxiosRequestConfig
+    ): Promise<AxiosResponse<T>> => {
+      return discordClientWithAuth(config, true, false);
+    };
    ```
 
-3. **발화자 매칭 시스템**
-   ```python
-   def match_speaker(segment_start, segment_end, speaking_times, threshold=1.0):
-       # 발화자 매칭 로직
+3. **API custom hook **
+   - API를 사용하는 custom hook. 알맞은 axios-client 함수를 임포트
+   - GET은 tanstack의 useQuery
+   - 나머지 요청은 tanstack의 useMutation
+   ```typescript
+   export const useGetRecodingId = ({ recodingId }: Props) => {
+    const getRecodingId = async ({ recodingId }: Props) => {
+      const response = await client<RespType>({
+        url: `/recoding/${recodingId}`,
+        method: "get",
+      });
+      return response.data.data;
+    };
+    return useQuery({
+      queryKey: ["get-recoding-id", recodingId],
+      queryFn: () => getRecodingId({ recodingId }),
+     });
+   };
    ```
 
-## 6. 문제 해결
+## 5. 문제 해결
 
 ### 일반적인 문제
-1. **봇 응답 없음**
-   - 인텐트 설정 확인
-   - 토큰 유효성 확인
-   - 로그 파일 확인
-
-2. **음성 인식 실패**
-   ```python
-   # 디버깅을 위한 로그 추가
-   logger.debug(f"Audio data size: {len(merged_audio)}")
-   logger.debug(f"API response: {response}")
+1. **type error**
+   ```typescript
+   yarn run dev
    ```
+   - 해당 명령어로 로그 확인
+   - 타입 에러는 배포, 협업에 큰 이슈를 일으킴
 
-3. **메모리 문제**
-   - 오디오 데이터 청크 크기 조정
-   - 불필요한 데이터 정리
+2. **redirectUrl 문제**
+![Group 121](https://github.com/user-attachments/assets/1693eb9f-cd27-4986-ba68-42e47f4bb972)
+https://discord.com/developers/applications
+   - 디스코드 개발자 포털 접속 -> application -> Oauth2에 알맞은 redirectUrl 등록
 
-### 로그 분석
-```python
-# 로그 파일 위치: bot.log
-# 로그 레벨별 확인
-DEBUG: 상세 디버깅 정보
-INFO: 일반 정보
-ERROR: 오류 정보
-```
+3. **yarn version 문제**
+   - 패키지 매니저 corepack 제거
 
-## 7. 기여 가이드
+## 6. 기여 가이드
 
 ### 코드 스타일
-- PEP 8 준수
-- Docstring 필수
-- Type Hints 사용
-```python
-def function_name(param: str) -> bool:
-    """
-    Function description.
-    Args:
-        param: Parameter description
-    Returns:
-        Return value description
-    """
+- CamelCase 변수명
+- 빈 인터페이스 사용 금지
+- HTML 기본 태그 상속
+```typescript
+  interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+    isRiv?: boolean;
+  }
+  
+  export default function Entry({
+    isRiv = false,
+    className,
+    ...props
+  }: ButtonProps) {
+    const dftBtnStyle =
+      "w-[5.8125rem] h-[4.0625rem] rounded-[0.75rem] text-medium hover:brightness-50 text-gray-09 transition duration-200";
+    const typeStyle = isRiv ? "bg-primary hover:" : "bg-gray-05";
+
+    return (
+      <button className={cn(className, dftBtnStyle, typeStyle, "")} {...props}>
+        {isRiv ? "Go" : "Setup"}
+      </button>
+    );
+  }
+
 ```
 
 ### Pull Request 프로세스
@@ -256,14 +291,6 @@ def function_name(param: str) -> bool:
 3. 코드 작성 및 테스트
 4. PR 생성
 5. 코드 리뷰 진행
-
-### 테스트
-```bash
-# 테스트 실행
-python -m pytest tests/
-# 커버리지 리포트
-pytest --cov=.
-```
 
 ---
 
