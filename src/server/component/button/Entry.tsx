@@ -16,7 +16,7 @@ export default function Entry({
 
   return (
     <button className={cn(className, dftBtnStyle, typeStyle, "")} {...props}>
-      {isRiv ? "Go" : "Setup"}
+      {isRiv ? "열기" : "초대"}
     </button>
   );
 }
