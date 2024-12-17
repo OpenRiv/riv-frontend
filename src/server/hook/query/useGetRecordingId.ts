@@ -42,14 +42,14 @@ const transformResponse = (data: RespType["data"]) => {
   const isSameDay = start.datePart === end.datePart;
 
   // 최종 형식화된 문자열
-  const formattedDateTime = isSameDay
+  const formatDate = isSameDay
     ? `${start.datePart} ${start.timePart} ~ ${end.timePart}`
     : `${start.datePart} ${start.timePart} ~ ${end.datePart} ${end.timePart}`;
 
   // 반환할 데이터
   return {
     ...data,
-    formattedDateTime,
+    formatDate,
   };
 };
 

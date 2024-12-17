@@ -1,7 +1,6 @@
 import { X } from "lucide-react";
 import RivEditor from "../../../component/editor";
 import { FloppyDiskBack } from "@phosphor-icons/react";
-import { formatDate } from "../utils/formatDate";
 import useMarkUp from "./hook/useMarkup";
 
 export default function MarkUpSection({
@@ -34,7 +33,7 @@ export default function MarkUpSection({
             placeholder="회의록 제목 입력"
           />
           <p className="text-[1rem] font-medium text-gray-07">
-            {formatDate(data?.createdAt || "")}
+            {data?.formatDate}
           </p>
         </div>
         <button onClick={toggleSheet} className="text-gray-07">
