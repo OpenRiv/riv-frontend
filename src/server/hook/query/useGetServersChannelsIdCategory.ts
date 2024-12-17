@@ -17,6 +17,7 @@ export const useGetServersChannelsIdCategory = ({ channelId }: Props) => {
   return useQuery({
     queryKey: ["servers-channels-categories", channelId],
     queryFn: () => getServerIdChannels({ channelId }),
+    enabled: channelId > 0, // channelId가 0보다 클 때만 요청 실행
   });
 };
 
