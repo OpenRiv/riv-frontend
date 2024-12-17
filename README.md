@@ -120,7 +120,7 @@ Riv-Frontend는 React 기반의 웹 클라이언트 프로젝트입니다. 이 �
    - 삭제 : 클릭 시 해당 회의록 삭제
   
 ### '/setup/:id' - 회의록페이지(수정 모달 활성화)
-![Frame 107](https://github.com/user-attachments/assets/9b4294ab-aed2-4afb-b231-bea18e4cd2b1)
+![Frame 107 (1)](https://github.com/user-attachments/assets/120fba49-019b-49c0-8dfe-8ad7f4b0f02d)
 1. **회의록 제목, 회의 시간**
      
 2. **닫기 버튼**
@@ -168,14 +168,33 @@ src/
 └── main.tsx
 ```
 
-### 주요 클래스 및 함수
-1. **CustomSink**
-   - 음성 데이터 캡처
-   - 타임스탬프 관리
-   - 사용자별 데이터 관리
+### 주요 코드
+1. **QueryClient**
+   ```typescript
+   // src/App.tsx
+   // tanstack 쿼리 캐시와 상호작용하는 객체. 캐싱 시간, 동기화, accessToken 갱신 로직을 설정
+   const queryClient = new QueryClient({
+     queryCache: new QueryCache({
+       onError: (error) => {
+        if (error instanceof APIResponseError) {
+          if (error.body.code === "invalid_token") {
+            localStorage.removeItem("accessToken");
+            window.location.href = "/";
+          }
+        }
+      },
+    }),
+    defaultOptions: {
+      queries: {
+        retry: false,
+        staleTime: 1000 * 60 * 5,
+      },
+    },
+   });
+   ```
 
 2. **AudioProcessor**
-   ```python
+   ```typescript
    async def process_recording(sink, channel, meeting_title, members, start_time, end_time):
        # 오디오 처리 로직
    ```
