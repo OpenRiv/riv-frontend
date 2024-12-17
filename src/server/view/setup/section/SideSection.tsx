@@ -1,5 +1,5 @@
 import { FolderSimplePlus } from "@phosphor-icons/react";
-import List from "../../../component/button/list";
+import List from "../../../component/button/List";
 import ServerProfile from "../../../component/card/ServerProfile";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { sectionState } from "../state/state";
@@ -21,7 +21,7 @@ export default function SideSection({ guildId }: Props) {
   };
 
   return (
-    <section className="min-w-[20rem] min-h-screen max-h-full bg-gray-03 flex flex-col items-center">
+    <section className="max-sm:hidden min-w-[20rem] min-h-screen max-h-full bg-gray-03 flex flex-col items-center">
       <ServerProfile
         className="my-[2rem]"
         guildId={guildId}

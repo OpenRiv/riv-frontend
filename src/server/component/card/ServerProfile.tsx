@@ -3,7 +3,7 @@ import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "../../../common/component/radix/avator";
+} from "../../../common/component/radix/Avator";
 import { cn } from "../../../common/utils/cn";
 
 export default function ServerProfile({

@@ -1,6 +1,6 @@
-import RivToast from "../../../common/component/toast/rivToast";
-import ServerSection from "./section/server_section";
-import TitleSection from "./section/title_section";
+import RivToast from "../../../common/component/toast/RivToast";
+import ServerSection from "./section/ServerSection";
+import TitleSection from "./section/TitleSection";
 
 export default function ServerPage() {
   return (

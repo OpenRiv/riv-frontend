@@ -1,5 +1,5 @@
 import { discordClientBotAuth } from "../discord_client";
-import { DiscordGuild } from "./get_user_guilds";
+import { DiscordGuild } from "./getUserGuilds";
 
 // 특정 길드에 봇이 포함되어 있는지 확인하는 함수
 export const getBotInGuild = async () => {

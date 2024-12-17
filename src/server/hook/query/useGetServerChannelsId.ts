@@ -4,9 +4,15 @@ import { client } from "../../../common/api/backend/client";
 export const useGetServerChannelsId = ({
   channelId,
   size = 9,
+  categoryName = "",
+  isdesc = true,
+  search = "",
 }: InfiniteProps) => {
   const getServerChannelsId = async ({
     channelId,
+    categoryName,
+    isdesc,
+    search,
     pageParam = 0, // 기본값 설정
     size,
   }: InfiniteQueryProps) => {
@@ -14,6 +20,9 @@ export const useGetServerChannelsId = ({
       url: `/servers/channels/${channelId}`,
       method: "get",
       params: {
+        categoryName,
+        isdesc,
+        search,
         page: pageParam,
         size: size,
       },
@@ -22,9 +31,22 @@ export const useGetServerChannelsId = ({
   };
 
   return useInfiniteQuery({
-    queryKey: ["servers-channels-channelId", channelId],
+    queryKey: [
+      "servers-channels-channelId",
+      channelId,
+      categoryName,
+      isdesc,
+      search,
+    ],
     queryFn: ({ pageParam }) =>
-      getServerChannelsId({ channelId, pageParam, size }),
+      getServerChannelsId({
+        channelId,
+        categoryName,
+        isdesc,
+        search,
+        pageParam,
+        size,
+      }),
     getNextPageParam: (lastPage, allPages) => {
       return lastPage.data.last ? undefined : allPages.length; // 다음 페이지 번호 계산
     },
@@ -35,11 +57,17 @@ export const useGetServerChannelsId = ({
 
 interface InfiniteProps {
   channelId: number;
+  categoryName?: string;
+  isdesc?: boolean;
+  search?: string;
   size?: number;
 }
 
 interface InfiniteQueryProps {
   channelId: number;
+  categoryName?: string;
+  isdesc?: boolean;
+  search?: string;
   pageParam?: number;
   size: number;
 }

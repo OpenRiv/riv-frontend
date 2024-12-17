@@ -2,7 +2,7 @@ import { useId } from "../../../common/hook/route/useId";
 import MinuteSection from "./section/MinuteSection";
 import SideSection from "./section/SideSection";
 import "react-toastify/dist/ReactToastify.css";
-import RivToast from "../../../common/component/toast/rivToast";
+import RivToast from "../../../common/component/toast/RivToast";
 import { useRecoilState } from "recoil";
 import { sectionState } from "./state/state";
 import MenualSection from "./section/MenualSection";

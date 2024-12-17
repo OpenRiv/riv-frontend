@@ -1,10 +1,10 @@
-import { useUserGuilds } from "../../../../common/hook/query/use_get_user_guilds";
+import { useUserGuilds } from "../../../../common/hook/query/useGetUserGuilds";
 import ServerCard from "../../../component/card/ServerCard";
 import { useResServerCard } from "../../../hook/useResServerCard";
 import "react-loading-skeleton/dist/skeleton.css";
-import ServerSectionLoading from "../skeleton/server_section";
-import { useGetBotInGuild } from "../../../../common/hook/query/use_get_guilds_member";
-import { processAndGroupGuilds } from "../utils/guild_filter";
+import ServerSectionLoading from "../skeleton/ServerSection";
+import { useGetBotInGuild } from "../../../../common/hook/query/useGetGuildsMember";
+import { processAndGroupGuilds } from "../utils/GuildFilter";
 import useInviteBotListener from "../../../hook/useInviteBotListener";
 export default function ServerSection() {
   const { count } = useResServerCard();

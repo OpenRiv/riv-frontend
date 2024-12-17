@@ -1,4 +1,4 @@
-import { DiscordGuild } from "../../../../common/api/discord/get/get_user_guilds";
+import { DiscordGuild } from "../../../../common/api/discord/get/getUserGuilds";
 
 export const processAndGroupGuilds = (
   guildList: DiscordGuild[],

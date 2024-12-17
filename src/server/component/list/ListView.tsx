@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ServerToggle from "../button/server_toggle";
+import ServerToggle from "../button/ServerToggle";
 import { cn } from "../../../common/utils/cn";
 
 function ListView({ items, className }: ListViewProps) {

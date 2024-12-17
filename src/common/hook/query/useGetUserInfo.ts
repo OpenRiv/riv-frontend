@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getUserInfo } from "../../api/discord/get/get_user_info";
+import { getUserInfo } from "../../api/discord/get/getUserInfo";
 
 export const useUserInfo = () => {
   return useQuery({

@@ -1,6 +1,6 @@
-import ServiceButton from "../../../onboarding/component/service_button";
-import Riv from "../../component/riv/riv";
-import { handleTap } from "./utils/handle_tap";
+import ServiceButton from "../../../onboarding/component/ServiceButton";
+import Riv from "../../component/riv/Riv";
+import { handleTap } from "./utils/handleTap";
 import { useCodeListener } from "./hook/useCodeListener";
 
 export default function MainPage() {
@@ -49,7 +49,7 @@ function IntroSection() {
 function ButtonSection() {
   // 디스코드 온보딩 URL
   const onboardUrl = `${
-    import.meta.env.VITE_API_URL
+    import.meta.env.VITE_API_URL_2
   }oauth2/authorization/discord`;
   return (
     <div className="flex flex-row items-start gap-[1rem] max-sm:flex-col max-sm:items-center">
