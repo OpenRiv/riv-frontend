@@ -8,7 +8,6 @@ function ListView({ items, className }: ListViewProps) {
   const handleToggle = (index: number) => {
     setActiveIndex((prevIndex) => (prevIndex === index ? null : index));
   };
-
   return (
     <div
       className={cn(
