@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import RivToast from "../../../common/component/toast/RivToast";
 import { useRecoilState } from "recoil";
 import { sectionState } from "./state/state";
-import MenualSection from "./section/MenualSection";
+import ManualSection from "./section/ManualSection";
 import { useGetServersServer } from "../../hook/query/useGetServersServer";
 
 export default function SetupPage() {
@@ -28,7 +28,7 @@ export default function SetupPage() {
         ) : (
           <MinuteSection serverId={serverId} />
         )}
-        {!isMinuteSection && <MenualSection />}
+        {!isMinuteSection && <ManualSection />}
       </div>
       <RivToast />
     </>

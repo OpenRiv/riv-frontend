@@ -15,6 +15,7 @@ export default function ListCategory({
   // "카테고리 선택" + 유효한 카테고리만 병합
   const mergedCategories: Item[] = [
     { name: "카테고리 선택", isToggle: false },
+    { name: "전체", isToggle: true },
     ...validCategories.map((catName) => ({ name: catName, isToggle: true })),
   ];
 
@@ -26,7 +27,8 @@ export default function ListCategory({
       )}
     >
       {mergedCategories.map((item, index) => {
-        const isActive = category === item.name;
+        const isActive =
+          item.name === "전체" ? category === "" : category === item.name;
 
         return (
           <div
@@ -35,7 +37,6 @@ export default function ListCategory({
               item.className,
               `font-medium flex flex-row items-center gap-[2rem] justify-between cursor-pointer px-[1.1rem] py-[0.4rem]`
             )}
-            onClick={() => handleCategory(item.name)}
           >
             <div className="truncate whitespace-nowrap overflow-hidden">
               {item.name}
@@ -43,7 +44,9 @@ export default function ListCategory({
             {item.isToggle && (
               <ServerToggle
                 isActive={isActive}
-                onToggle={() => handleCategory(item.name)}
+                onToggle={() =>
+                  handleCategory(item.name === "전체" ? "" : item.name)
+                }
               />
             )}
           </div>

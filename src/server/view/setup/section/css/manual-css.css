@@ -1,0 +1,9 @@
+/* Toast UI Viewer 전체 텍스트 색상 */
+.toastui-editor-contents {
+  color: white !important;
+}
+
+/* h3 (파트별 매뉴얼 세부) 색상도 흰색으로 강제 적용 */
+.toastui-editor-contents h3 {
+  color: white !important;
+}
