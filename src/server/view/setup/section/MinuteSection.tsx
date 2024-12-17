@@ -2,23 +2,33 @@ import { FunnelSimple, SortAscending } from "@phosphor-icons/react";
 import Filter from "../../../component/button/Filter";
 import SearchBar from "../../../component/input/SearchBar";
 import MinuteCard from "../../../component/card/MinuteCard";
-import { ListView } from "../../../component/list/ListView";
-import { categories, sortItems } from "../../../component/list/ListType";
 import { formatDate } from "../utils/formatDate";
 import MarkUpSection from "./MarkupSection";
 import useSheet from "./hook/useSheet";
 import useMinutes from "./hook/useMinutes";
+import ListCurrent from "../../../component/list/ListCurrent";
+import { useGetServersChannelsIdCategory } from "../../../hook/query/useGetServersChannelsIdCategory";
+import ListCategory from "../../../component/list/ListCategory";
 
 export default function MinuteSection({ serverId }: Props) {
   const { isSheetOpen, toggleSheet } = useSheet();
   const {
     minutes,
     recodingId,
+    isdesc,
+    category,
     channelId,
     updateRecodingId,
+    handleDesc,
+    handleCategory,
     lastMinuteRef,
     isFetchingNextPage,
   } = useMinutes({ serverId });
+  const { data, isLoading, isError } = useGetServersChannelsIdCategory({
+    channelId,
+  });
+
+  const categories: string[] = data ?? [];
 
   return (
     <section className="w-full mx-[4rem] mt-[2.5rem] pr-[9rem] relative">
@@ -27,12 +37,21 @@ export default function MinuteSection({ serverId }: Props) {
         <Filter
           icon={<SortAscending className="size-[1.2rem]" weight="bold" />}
           text="정렬"
-          content={<ListView items={sortItems} />}
+          content={<ListCurrent isDesc={isdesc} handleDesc={handleDesc} />}
         />
         <Filter
           icon={<FunnelSimple className="size-[1.2rem]" weight="bold" />}
           text="카테고리"
-          content={<ListView items={categories} />}
+          content={
+            !isLoading &&
+            !isError && (
+              <ListCategory
+                category={category}
+                categories={categories}
+                handleCategory={handleCategory}
+              />
+            )
+          }
         />
       </div>
       <section className="my-[2rem] gap-[1rem] flex flex-col">

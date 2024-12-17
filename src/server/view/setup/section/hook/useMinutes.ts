@@ -4,10 +4,21 @@ import { useGetServerChannelsId } from "../../../../hook/query/useGetServerChann
 
 export default function useMinutes({ serverId }: Props) {
   const [recodingId, setRecodingId] = useState<number>(0);
+  const [isdesc, setDesc] = useState<boolean>(true);
+  const [category, setCategory] = useState<string>("");
+
   const observer = useRef<IntersectionObserver | null>(null);
 
   const updateRecodingId = (newRecordingId: number) => {
     setRecodingId(newRecordingId);
+  };
+
+  const handleDesc = (newState: boolean) => {
+    setDesc(newState);
+  };
+
+  const handleCategory = (newCategory: string) => {
+    setCategory(newCategory);
   };
 
   const { data: channelData } = useGetServerIdChannels({ serverId });
@@ -16,6 +27,8 @@ export default function useMinutes({ serverId }: Props) {
   const { data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage } =
     useGetServerChannelsId({
       channelId,
+      categoryName: category,
+      isdesc,
       size: 5, // 페이지당 아이템 수
     });
 
@@ -40,7 +53,11 @@ export default function useMinutes({ serverId }: Props) {
 
   return {
     recodingId,
+    isdesc,
+    category,
     updateRecodingId,
+    handleDesc,
+    handleCategory,
     minutes,
     lastMinuteRef,
     isFetching,
