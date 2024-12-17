@@ -31,7 +31,13 @@ export const useGetServerChannelsId = ({
   };
 
   return useInfiniteQuery({
-    queryKey: ["servers-channels-channelId", channelId, isdesc],
+    queryKey: [
+      "servers-channels-channelId",
+      channelId,
+      categoryName,
+      isdesc,
+      search,
+    ],
     queryFn: ({ pageParam }) =>
       getServerChannelsId({
         channelId,

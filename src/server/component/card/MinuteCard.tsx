@@ -2,6 +2,8 @@ import { DotsThree } from "@phosphor-icons/react";
 import { toast } from "react-toastify";
 import { useQueryClient } from "@tanstack/react-query";
 import { useDeleteRecoding } from "../../hook/mutation/useDeleteRecording";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 export default function MinuteCard({
   title,
@@ -80,4 +82,36 @@ interface MinuteCardProps {
   onSheet: VoidFunction;
   recordingId: number;
   channelId: number;
+}
+
+export function MinuteCardLoading() {
+  return (
+    <div className="relative w-full">
+      <div className="bg-[#383A45] text-gray-07 w-full h-[9rem] rounded-[0.9rem] space-y-[0.7rem] flex flex-col justify-center pl-[1.5rem]">
+        {/* 제목 Skeleton */}
+        <Skeleton
+          width="30%"
+          height="1.2rem"
+          style={{ borderRadius: "0.5rem" }}
+        />
+        {/* 미리보기 Skeleton */}
+        <Skeleton
+          width="80%"
+          height="1rem"
+          style={{ borderRadius: "0.5rem" }}
+        />
+        <Skeleton
+          width="70%"
+          height="1rem"
+          style={{ borderRadius: "0.5rem" }}
+        />
+      </div>
+      <div className="absolute top-[0.5rem] right-[0.75rem] flex flex-col items-end">
+        <DotsThree
+          weight="bold"
+          className="size-[1.75rem] text-gray-07 group-hover:text-gray-09"
+        />
+      </div>
+    </div>
+  );
 }

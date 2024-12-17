@@ -1,5 +1,6 @@
 import { useResServerCard } from "../../../hook/useResServerCard";
 import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 export default function ServerSectionLoading() {
   const { count } = useResServerCard();

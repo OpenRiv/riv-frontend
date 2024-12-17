@@ -1,11 +1,14 @@
 import { useRef, useCallback, useState } from "react";
 import { useGetServerIdChannels } from "../../../../hook/query/useGetServersIdChannels";
 import { useGetServerChannelsId } from "../../../../hook/query/useGetServerChannelsId";
+import { useRecoilValue } from "recoil";
+import { SearchState } from "../recoil/state";
 
 export default function useMinutes({ serverId }: Props) {
   const [recodingId, setRecodingId] = useState<number>(0);
   const [isdesc, setDesc] = useState<boolean>(true);
   const [category, setCategory] = useState<string>("");
+  const search = useRecoilValue(SearchState);
 
   const observer = useRef<IntersectionObserver | null>(null);
 
@@ -24,13 +27,20 @@ export default function useMinutes({ serverId }: Props) {
   const { data: channelData } = useGetServerIdChannels({ serverId });
   const channelId: number = channelData ?? 0;
 
-  const { data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage } =
-    useGetServerChannelsId({
-      channelId,
-      categoryName: category,
-      isdesc,
-      size: 5, // 페이지당 아이템 수
-    });
+  const {
+    data,
+    fetchNextPage,
+    hasNextPage,
+    isLoading,
+    isFetching,
+    isFetchingNextPage,
+  } = useGetServerChannelsId({
+    channelId,
+    categoryName: category,
+    isdesc,
+    search,
+    size: 5, // 페이지당 아이템 수
+  });
 
   const minutes = data?.pages.flatMap((page) => page.data.textInfoList) ?? [];
 
@@ -60,6 +70,7 @@ export default function useMinutes({ serverId }: Props) {
     handleCategory,
     minutes,
     lastMinuteRef,
+    isLoading,
     isFetching,
     isFetchingNextPage,
     channelId,
