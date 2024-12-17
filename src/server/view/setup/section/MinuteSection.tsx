@@ -39,9 +39,9 @@ export default function MinuteSection({ serverId }: Props) {
   const categories: string[] = data ?? [];
 
   return (
-    <section className="w-full mx-[4rem] mt-[2.5rem] pr-[9rem] relative">
+    <section className="w-full mx-[4rem] mt-[2.5rem] pr-[2rem] relative">
       <SearchBar />
-      <div className="flex flex-row gap-5 mt-[1.5rem]">
+      <div className="flex flex-row gap-5 mt-[1.5rem] max-lg:hidden">
         <Filter
           icon={<SortAscending className="size-[1.2rem]" weight="bold" />}
           text="정렬"
@@ -90,7 +90,7 @@ export default function MinuteSection({ serverId }: Props) {
       {isFetchingNextPage && <div className="text-center">로딩 중...</div>}
 
       <div
-        className={`fixed top-0 right-0 h-full w-1/2 bg-gray-04 shadow-lg transform transition-transform duration-500 ease-in-out ${
+        className={`fixed top-0 right-0 h-full w-[1024px] max-lg:w-full bg-gray-04 shadow-lg transform transition-transform duration-500 ease-in-out ${
           isSheetOpen ? "translate-x-0" : "translate-x-full"
         } z-20`}
       >

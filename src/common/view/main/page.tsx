@@ -49,7 +49,7 @@ function IntroSection() {
 function ButtonSection() {
   // 디스코드 온보딩 URL
   const onboardUrl = `${
-    import.meta.env.VITE_API_URL
+    import.meta.env.VITE_API_URL_2
   }oauth2/authorization/discord`;
   return (
     <div className="flex flex-row items-start gap-[1rem] max-sm:flex-col max-sm:items-center">

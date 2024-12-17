@@ -21,7 +21,6 @@ export function useCodeListener() {
       }
 
       const { authCode } = event.data;
-
       if (authCode) {
         fetchAccessToken(authCode);
       }
