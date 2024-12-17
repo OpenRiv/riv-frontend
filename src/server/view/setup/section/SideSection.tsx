@@ -21,7 +21,7 @@ export default function SideSection({ guildId }: Props) {
   };
 
   return (
-    <section className="min-w-[20rem] min-h-screen max-h-full bg-gray-03 flex flex-col items-center">
+    <section className="max-sm:hidden min-w-[20rem] min-h-screen max-h-full bg-gray-03 flex flex-col items-center">
       <ServerProfile
         className="my-[2rem]"
         guildId={guildId}

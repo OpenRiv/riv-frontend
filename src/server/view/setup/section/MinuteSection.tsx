@@ -39,7 +39,7 @@ export default function MinuteSection({ serverId }: Props) {
   const categories: string[] = data ?? [];
 
   return (
-    <section className="w-full mx-[4rem] mt-[2.5rem] pr-[2rem] relative">
+    <section className="w-full mx-[4rem] mt-[2.5rem] max-sm:pr-0 pr-[2rem] relative">
       <SearchBar />
       <div className="flex flex-row gap-5 mt-[1.5rem] max-lg:hidden">
         <Filter
